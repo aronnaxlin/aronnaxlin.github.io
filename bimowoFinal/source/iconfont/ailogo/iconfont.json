@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1306362",
+      "name": "aislogo",
+      "font_class": "aislogo",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "34604066",
+      "name": "游戏AI对战机器人",
+      "font_class": "youxiAIduizhanjiqiren",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    }
+  ]
+}

@@ -26,7 +26,13 @@
             <a href="https://lol.qq.com/main.shtml" class="universalLeft">
                 <img src="./source/img/universal/universalLogo.svg" alt="lol_logo">
             </a>
-            <div class="universalRight">
+            <!-- 汉堡菜单按钮 -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="universalRight" id="universalRight">
                 <ul>
                     <!-- 导航栏链接 -->
                     <!-- Update: add hover effect -->
@@ -68,6 +74,9 @@
     <div id="ai-assistant-container" style="display: none;">
         <iframe src="./source/ai_assistant/lol-chat.html" id="ai-assistant" frameborder="0"></iframe>
     </div>
+
+    <!-- Universal Navigation Bar JavaScript -->
+    <script src="./js/universalNavBar.js"></script>
 </body>
 
 </html>

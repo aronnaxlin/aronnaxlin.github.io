@@ -100,6 +100,8 @@ h3 {
     /* 可增长，可收缩，基础宽度400px */
     overflow-wrap: break-word;
     /* 确保文本不会溢出容器 */
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .indexB1 {
@@ -120,7 +122,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 700px;
+    width: 700px;
 }
 
 .indexA3Top h3 {

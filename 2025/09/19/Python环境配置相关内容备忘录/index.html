@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"aronnax.site","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="起因在一台电脑上，可能有多个Python环境，每个环境都附带了大量的包，例如在我的mac上，就有macOS自带Python，homebrew所安装的Python以及Anaconda所附带的Python环境，管理起来非常混乱。 今日在完成CS50P作业时，发现我若在本地VS Code中import pytest，会被pylance报错为import &quot;pytest&quot; could">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python环境配置相关内容备忘录">
-<meta property="og:url" content="http://example.com/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
+<meta property="og:url" content="http://aronnax.site/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
 <meta property="og:site_name" content="Aronnax&#39;s Blog">
 <meta property="og:description" content="起因在一台电脑上，可能有多个Python环境，每个环境都附带了大量的包，例如在我的mac上，就有macOS自带Python，homebrew所安装的Python以及Anaconda所附带的Python环境，管理起来非常混乱。 今日在完成CS50P作业时，发现我若在本地VS Code中import pytest，会被pylance报错为import &quot;pytest&quot; could">
 <meta property="og:locale" content="zh_CN">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="Python学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/">
+<link rel="canonical" href="http://aronnax.site/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/">
 
 
 <script id="page-configurations">
@@ -167,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://aronnax.site/2025/09/19/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E5%A4%87%E5%BF%98%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

@@ -1196,7 +1196,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff5496;
+  background: #694157;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2331,4 +2331,19 @@ embed {
 }
 .bilibili:hover {
   opacity: 1;
+}
+/* cancel the highlight dot before the social account */
+.links-of-author a::before,
+.links-of-author span.exturl::before,
+.links-of-author-item a::before,
+.links-of-author-item span.exturl::before {
+  display: none !important;
+  content: "" !important;
+  background: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+#menu i.fa {
+  font-size: 18px;
+  vertical-align: middle;
 }

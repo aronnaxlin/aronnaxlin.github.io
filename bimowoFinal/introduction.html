@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英雄联盟官方网站-游戏介绍</title>
+    <!-- Basic -->
+    <link rel="stylesheet" href="./css/introduction.css">
+    <!-- Nav Bar -->
+    <link rel="stylesheet" href="./css/universalNavBar.css">
+    <!-- AI Button -->
+    <link rel="stylesheet" href="./css/aiButton.css">
+    <!-- iconfont -->
+    <link rel="stylesheet" href="./source/iconfont/ailogo/iconfont.css">
+    <link rel="stylesheet" href="./css/universal.css">
+</head>
+
+<body>
+    <!-- body标签：页面的主体内容区，所有可见的页面元素（文字、图片、按钮等）都放在这里 -->
+    <!-- 页面头部区域：通常包含logo、导航栏等核心导航元素 -->
+    <div class="universalNavBar"><!-- 导航栏容器 -->
+        <div class="universalNavBarBackground"><img src="./source/img/universal/universalBackgroud.jpg" alt="导航栏图片">
+        </div><!-- 背景图 -->
+        <div class="universalNavBarContent"><!-- 导航栏内容 -->
+            <a href="https://lol.qq.com/main.shtml" class="universalLeft">
+                <img src="./source/img/universal/universalLogo.svg" alt="lol_logo">
+            </a>
+            <!-- 汉堡菜单按钮 -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="universalRight" id="universalRight">
+                <ul>
+                    <!-- 导航栏链接 -->
+                    <!-- Update: add hover effect -->
+                    <li><a href="./index.html">主页</a></li>
+                    <li><a href="./character.html">角色介绍</a></li>
+                    <li><a href="./introduction.html">游戏简介</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 游戏简介标题容器，驼峰命名体现gameIntro组别 -->
+    <div class="introductionBiaoti">
+        <h2>游戏简介</h2>
+    </div>
+    <!-- 游戏简介内容区块，驼峰命名体现gameIntro组别 -->
+    <section class="introductionSection">
+        <p>《英雄联盟》（League of Legends，简称LOL）是由美国拳头游戏（Riot
+            Games）开发、中国内地由腾讯游戏代理运营的英雄对战MOBA竞技网游。游戏里拥有数百个个性英雄，并拥有排位系统、符文系统等特色系统。</p>
+        <p>《英雄联盟》致力于推动全球电子竞技的发展，除了联动各赛区发展职业联赛、打造电竞体系之外，每年还会举办“英雄联盟季中冠军赛”“英雄联盟全球总决赛”“英雄联盟全明星赛”三大世界级赛事，形成了自己独有的电子竞技文化。</p>
+        <p>2018年5月14日，《英雄联盟》加入“亚洲运动会”，成为表演项目之一。2021年11月5日，《英雄联盟》入选为第19届“亚洲运动会”电竞比赛项目，这是电竞首次成为亚运会的正式竞赛项目，向全世界展现电竞运动的魅力，项目所获得的奖牌将计入国家奖牌榜。
+        </p>
+        <img src="./source/img/introduction/map.png" alt="Game map">
+        <p>2019年9月17日，拳头游戏值《英雄联盟》十周年之际发布了其全新的LOGO，并公布每一天全世界都有超过八百万玩家同时在线，这意味着英雄联盟依然是全球玩家数最大的电脑游戏。</p>
+        <p>在这里，魔法不只是一种神秘莫测的能量概念。它是实体化的物质，可以被引导、成形、塑造和操作。符文之地的魔法拥有自己的自然法则，源生态魔法随机变化的结果改变了科学法则。</p>
+        <p>符文之地有数块大陆，不过所有的生命都集中在最大魔法大陆——瓦洛兰。瓦洛兰大陆居于符文之地中心，是符文之地面积最大的大陆。</p>
+        <p>被祝福的符文之地上有大量源生态魔法能量，而此地居民可以触及其中的能量。符文之地的中心区域集中了数量巨大的源生态魔法能量，这些地方都是水晶枢纽的理想位置。水晶枢纽可以将源生能量塑形为自身实体化的存在。此外，水晶枢纽还可以成为能量车间，为需要魔法能量的建筑供能。水晶枢纽遍布符文之地，但最大的水晶枢纽都坐落在瓦洛兰大陆。
+        </p>
+    </section>
+    <footer>
+            <p>COPYRIGHT © 1998 - 2025 TENCENT. ALL RIGHTS RESERVED.
+            <br>COPYRIGHT © 2012 Riot Games,Inc. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+
+    <!-- Update: AI BUTTON -->
+    <div class="aiButton iconfont icon-youxiAIduizhanjiqiren" id="ai-button">
+    </div>
+
+    <div id="ai-assistant-container" style="display: none;">
+        <iframe src="./source/ai_assistant/lol-chat.html" id="ai-assistant" frameborder="0"></iframe>
+    </div>
+
+    <!-- Universal Navigation Bar JavaScript -->
+    <script src="./js/universalNavBar.js"></script>
+</body>
+
+</html>

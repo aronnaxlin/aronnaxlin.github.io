@@ -1196,7 +1196,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #385058;
+  background: #a8fffa;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2348,45 +2348,54 @@ embed {
   vertical-align: middle;
 }
 /* 备案信息容器 */
-.beian {
-  display: inline-flex;
-  align-items: center;
+/* --- 备案信息样式强制覆盖 --- */
+/* 增加 .footer-inner 前缀以提高优先级 */
+.footer-inner .beian {
+  display: flex !important;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-  font-size: 12px;
-  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-}
-/* 每一个备案链接的样式 */
-.beian a {
-  color: #666 !important;
-  background: rgba(255,255,255,0.5); /* 半透明背景 */
-  padding: 4px 12px;
-  border-radius: 20px; /* 胶囊圆角 */
-  border: 1px solid rgba(0,0,0,0.05);
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-  display: flex;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  font-size: 12px;
+  width: 100%;
 }
-/* 鼠标悬停效果 */
-.beian a:hover {
-  color: #222 !important;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transform: translateY(-1px);
+/* 针对备案链接的精致化改造 */
+.footer-inner .beian a {
+  display: inline-flex !important;
+  align-items: center;
+  color: #555 !important;
+  background: rgba(255,255,255,0.6) !important;
+  padding: 4px 15px !important;
+  border-radius: 50px !important; /* 彻底的圆角胶囊 */
+  border: 1px solid #e1e1e1 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+/* 去掉 NexT 默认可能的下划线 */
+  border-bottom: 1px solid #e1e1e1 !important;
 }
-/* 修正公安图标样式 */
-.beian img {
-  display: inline-block;
-  margin-right: 5px;
+/* 悬停效果：模仿 macOS 按钮质感 */
+.footer-inner .beian a:hover {
+  color: #007aff !important; /* 经典的科技蓝 */
+  background: #fff !important;
+  border-color: #007aff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  transform: translateY(-2px);
+}
+/* 修正图标位置 */
+.footer-inner .beian img {
+  display: inline-block !important;
+  margin-right: 6px !important;
   width: 14px !important;
   height: 14px !important;
-  vertical-align: sub;
+  vertical-align: middle !important;
+/* 解决图标偏上的微调 */
+  position: relative;
+  top: -1px;
 }
-/* 隐藏分隔符（NexT 默认可能带有的 |） */
-.beian span.sep {
-  display: none;
+/* 隐藏 NexT 默认带的烦人竖线分隔符 */
+.footer-inner .beian .sep,
+.footer-inner .beian span:not([class]) {
+  display: none !important;
 }

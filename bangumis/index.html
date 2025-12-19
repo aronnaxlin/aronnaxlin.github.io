@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aronnax.site","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="My Anime List.bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{position:relative;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="追番列表">
+<meta property="og:url" content="http://aronnax.site/bangumis/index.html">
+<meta property="og:site_name" content="Aronnax&#39;s Blog">
+<meta property="og:description" content="My Anime List.bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{position:relative;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/ce/3a/255209_g9z4S.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/c2/4f/3825_EUY1U.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/d3/a3/467930_jH4s4.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/ed/a1/550507_mNM82.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/27/84/526816_i7w6d.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/45/55/548133_eeOyo.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/c0/94/537743_yYZxV.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/3d/8e/843_6wj9L.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/5b/9a/537409_w8wy0.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/7e/10/496276_ZsSSi.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/d1/3c/508958_gMfH8.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/d5/d7/72941_q1DiW.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/c5/09/185792_YmcaM.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/40/00/340_J14Mj.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/7b/13/993_6PQ58.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/27/d7/512190_3FtCT.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/83/d3/374319_JSG4d.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/d2/52/110600_8rZ1F.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/b8/26/498934_KffF9.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/5f/18/282433_9wDx9.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/9e/7c/419613_5IY5Y.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/04/dc/29883_jQ4Hz.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/52/88/390555_11QS3.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/38/44/398951_973Z3.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/93/79/440095_HJh7H.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/6e/1a/509986_99qsc.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/ca/48/214265_uHAIG.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/d3/5d/531159_BayD9.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/a6/39/485936_y0bX8.jpg">
+<meta property="og:image" content="https://lain.bgm.tv/r/400/pic/cover/l/a7/49/8402_Q9mLv.jpg">
+<meta property="article:author" content="Aronnax Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lain.bgm.tv/r/400/pic/cover/l/ce/3a/255209_g9z4S.jpg">
+
+<link rel="canonical" href="http://aronnax.site/bangumis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>追番列表 | Aronnax's Blog
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Aronnax's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Aronnax's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-animes">
+
+    <a href="/bangumis/" rel="section"><i class="fa fa-tv fa-fw"></i>Animes</a>
+
+  </li>
+        <li class="menu-item menu-item-episodes">
+
+    <a href="/cinemas/" rel="section"><i class="fa fa-film fa-fw"></i>Episodes</a>
+
+  </li>
+        <li class="menu-item menu-item-friends">
+
+    <a href="/friends/" rel="section"><i class="fa fa-link fa-fw"></i>Friends</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">追番列表
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <blockquote><p>My Anime List</p></blockquote><script src="https://pugjs.org/js/pug.js"></script><script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script><style>.bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{position:relative;clear:both;padding:10px 0;border-bottom:1px solid #ddd;min-height:180px}@media screen and (max-width:600px){.bangumi-item{width:100%}}.bangumi-picture{position:absolute;left:0;top:10px;width:110px}.bangumi-picture img{margin:10px 0}.bangumi-info{padding-left:120px;margin-top:10px;min-height:160px}.bangumi-meta{font-size:12px;padding-right:10px;height:45px}.bangumi-summary{font-size:12px;margin-top:10px}.bangumi-summary>p{word-break:break-all;text-overflow:ellipsis;overflow:hidden;height:72px;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3}.bangumi-summary>p.has-bangumi-progress{height:48px;-webkit-line-clamp:2;line-clamp:2}.bangumi-comments{font-size:12px}.bangumi-pagination{margin-top:15px;text-align:center;margin-bottom:10px}.bangumi-button{padding:5px}.bangumi-button:hover{background:#657b83;color:#fff}.bangumi-hide{display:none}.bangumi-show{display:block}.bangumi-title{font-size:18px;font-weight:700}.bangumi-title a{line-height:1;text-decoration:none}.bangumi-info-items{font-size:12px;color:#2fd8d8;padding-top:10px;line-height:1;float:left;width:100%;height:45px}.bangumi-info-item{display:inline-block;width:13%;border-right:1px solid #2fd8d8;text-align:center;height:34px}.bangumi-info-label{display:block;line-height:12px}.bangumi-info-item em{display:block;padding-top:6px;line-height:17px;font-style:normal;font-weight:700}.bangumi-info-total{padding-top:11px;display:block;line-height:12px;font-weight:700}.bangumi-info-item-score{border-right:1px solid #0000;width:50px}.bangumi-info-label-em{color:transparent;opacity:0;visibility:hidden;line-height:6px!important;padding:0!important}@media (max-width:650px){.bangumi-coin,.bangumi-type{display:none}.bangumi-info-item{width:16%}}@media (max-width:590px){.bangumi-danmaku,.bangumi-wish{display:none}.bangumi-info-item{width:19%}}@media (max-width:520px){.bangumi-doing,.bangumi-play{display:none}.bangumi-info-item{width:24%}}@media (max-width:480px){.bangumi-collect,.bangumi-follow,.bangumi-info-item-follow{display:none}.bangumi-info-item{width:30%}}@media (max-width:400px){.bangumi-area,.bangumi-tag{display:none}.bangumi-info-item{width:45%}}@media (max-width:270px){.bangumi-info-item-score{display:none}.bangumi-info-item{width:100%;border-right:none}}.bangumi-my-comments{border:1px dashed #8f8f8f;padding:3px;border-radius:5px}.bangumi-starstop{background:url(https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.7.9/lib/img/rate_star_2x.png) 100% 100%/10px 19.5px repeat-x;height:10px;width:50px;display:inline-block;float:none}.bangumi-starlight{background:url(https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.7.9/lib/img/rate_star_2x.png) 0 0/10px 19.5px repeat-x;height:10px;display:block;width:100%}.bangumi-starlight.stars1{width:5px}.bangumi-starlight.stars2{width:10px}.bangumi-starlight.stars3{width:15px}.bangumi-starlight.stars4{width:20px}.bangumi-starlight.stars5{width:25px}.bangumi-starlight.stars6{width:30px}.bangumi-starlight.stars7{width:35px}.bangumi-starlight.stars8{width:40px}.bangumi-starlight.stars9{width:45px}.bangumi-starlight.stars10{width:50px}.bangumi-info .bangumi-progress{width:100%;height:24px;background-color:#f2f2f2;border-radius:5px;overflow:hidden;font-size:16px;text-align:center;position:relative}.bangumi-info .bangumi-progress-text{z-index:100;position:relative;color:#3c4858;line-height:24px}.bangumi-info .bangumi-progress .progress-bar{z-index:50;height:100%;background-color:#007bffad;border-radius:5px;position:absolute;top:0}</style><div class="bangumi-tabs"><a class="bangumi-tab" id="bangumi-tab1" href="javascript:;" rel="external" target="_self" onclick="return false">想看
+(23)</a><a class="bangumi-tab" id="bangumi-tab2" href="javascript:;" rel="external" target="_self" onclick="return false">在看
+(25)</a><a class="bangumi-tab" id="bangumi-tab3" href="javascript:;" rel="external" target="_self" onclick="return false">已看
+(172)</a></div><div><div id="bangumi-item1"><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/ce/3a/255209_g9z4S.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/ce/3a/255209_g9z4S.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/255209">二十世纪电气目录</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>京阿尼</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1986</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：煙が覆う世界で電氣の時代を夢見た、
+少年少女の冒険奇譚！
+
+煙が覆う世界で電氣の時代を夢見た、少年少女の冒険奇譚！ 
+これは少し昔。
+今ある歴史とは異なる進化を遂げた、20世紀初頭の京都。
+蒸気機関のみが発達した世界で、街は煙に...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/c2/4f/3825_EUY1U.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/c2/4f/3825_EUY1U.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/3825">速写者</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全24话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>GONZO</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>2885</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/24</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：经过了残酷的战争后，世界贫富分化加剧，日本这种腐朽和糜烂的资本主义国家自然不能例外，东京已经变成了充斥着欲望的极乐都市。已经年过30的杂贺辰已，是个落魄潦倒的自由摄影师。因为护照被夺走成为日本国内的黑人户口，粗野且对金钱和权力不屑一顾的...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/d3/a3/467930_jH4s4.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/d3/a3/467930_jH4s4.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/467930">青春猪头少年不会梦到圣诞服女郎</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>恋爱</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>15897</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>6.9</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/13</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：思春期症候群――
+不安定な精神状態によって引き起こされると噂の不思議現象。
+
+高校時代に様々な思春期症候群を発症した少女たちに出会ってきた
+“梓川咲太”も大学生になった。
+
+国民的人気女優であり、恋人の“桜島麻衣”と共に
+金沢...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/ed/a1/550507_mNM82.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/ed/a1/550507_mNM82.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/550507">败犬女主太多了！第二季</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>A-1Pictures</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1870</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>6</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：-</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/27/84/526816_i7w6d.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/27/84/526816_i7w6d.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/526816">机动战士高达 GQuuuuuuX</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>高达</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>17251</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>6.2</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/12</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：天手让叶是名女高中生，在空中的宇宙殖民卫星过着平静的生活。
+
+但在遇到难民少女尼娅安后，她被卷入了非法MS决斗竞技《军团战》之中。她化名《玛秋》参赛，驾驶着GQuuuuuuX，每日投身激烈的战斗。
+
+同时，被宇宙军和警察两方追捕的神...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/45/55/548133_eeOyo.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/45/55/548133_eeOyo.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/548133">「It's MyGO!!!!!」「Ave Mujica」アニメ続編シリーズ</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1278</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>2.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：続編となるアニメシリーズの制作が決定❢❢
+制作にあたり北欧ロケも敢行✈✨...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/c0/94/537743_yYZxV.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/c0/94/537743_yYZxV.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/537743">某科学的超电磁炮 第四季</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>J.C.STAFF</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1557</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>9.7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：『とある科学の超電磁砲』第4期は、2025年2月に制作決定が発表され、現在も制作進行中です。具体的な放送開始時期はまだ発表されていませんが、前回の第3期から放送間隔が約5年空いているため、早ければ2025年後半、遅くとも2026年前半の放送...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/3d/8e/843_6wj9L.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/3d/8e/843_6wj9L.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/843">妄想代理人</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>今敏</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>12421</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/13</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：著名的設計師鷺月子在一天夜裏突然遭到神秘少年襲擊。在此之後接連出現新的受害者，城中一度陷入恐慌。事件的真相究竟是……...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/5b/9a/537409_w8wy0.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/5b/9a/537409_w8wy0.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/537409">孤独摇滚！第二季</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>CloverWorks</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>4302</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：「ぼっちちゃん」こと後藤ひとりは、ギターを愛する孤独な少女。
+家で一人寂しく弾くだけの毎日だったが、
+ひょんなことから伊地知虹夏が率いる「結束バンド」に加入することに。
+人前での演奏に不慣れな後藤は、立派なバンドマンになれるのか――...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/7e/10/496276_ZsSSi.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/7e/10/496276_ZsSSi.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/496276">攻壳机动队 THE GHOST IN THE SHELL</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>ScienceSARU</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>882</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>9</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/0</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：1989年に「ヤングマガジン増刊 海賊版」（講談社）にて士郎正宗が原作コミックを発表して以来、押井守監督による『GHOST IN THE SHELL/攻殻機動隊』（1995年）をはじめ、アニメーション、ハリウッド実写映画など様々な作品群を展...</p></div></div></div><div class="bangumi-pagination"><a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false">首页</a><a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a><span class="bangumi-pagenum">2 / 3</span><a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a><a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a></div></div><div id="bangumi-item2"><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/d1/3c/508958_gMfH8.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/d1/3c/508958_gMfH8.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/508958">绝妙舞步</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>2025年10月</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1800</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>5.2</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：4/0</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：自分の気持ちを上手く表現できない、
+吃音（きつおん）症の高校生・小谷花木（カボ）。 そんな彼が惹かれたのは、周りの目を気にせず
+ダンスを追い求める同級生・湾田光利（ワンダ）。 ”なんか、自由になれる感じがするー&quot; 音楽によって引き出され...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/d5/d7/72941_q1DiW.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/d5/d7/72941_q1DiW.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/72941">斩服少女</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全24话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>今石洋之</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>35898</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：7/24</div><div class="progress-bar" style="width: 29%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：本故事以被武力和恐怖支配的本能字学院为舞台，以为父报仇的转校生少女为中心， 围绕着在学园中“执牛耳者”的学生及学生会四大天王间的激战故事展开。
+
+缠流子和鬼龙院皋月，两人为本作的主人公。在本作中，皋月用极制服的力量支配着学园， 而流子为...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/c5/09/185792_YmcaM.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/c5/09/185792_YmcaM.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/185792">小魔女学园</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全25话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>TRIGGER</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>19980</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：0/25</div><div class="progress-bar" style="width: 0%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：自从幼年目睹夏依妮·莎莉温的魔法表演后，梦想成为魔女的亚可，进入了与莎莉温相同的传统魔女育成名门校“露娜诺娃魔法学校”。
+新的城镇，新的学校生活，以及新遇到的朋友。魔女学校中的扫帚飞行课程以及充满魔法气息的不可思议的授课等等，在这些只有魔...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/40/00/340_J14Mj.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/40/00/340_J14Mj.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/340">虫师</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全26话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>治愈</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>28408</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：11/26</div><div class="progress-bar" style="width: 42%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：这里的虫既不是动植物，也与微生物和菌类不同，是更接近生命原生态的东西。这些东西总称为“虫”。它们的形态和存在都很暧昧，当人与虫的世界重叠之时，发生了超越人类智慧的怪异现象，此时人类才开始知道它们的存在。 
+所谓生命，并非为威胁异己而存在。...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/7b/13/993_6PQ58.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/7b/13/993_6PQ58.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/993">白色相簿</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>白色相簿</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>11199</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.4</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/13</div><div class="progress-bar" style="width: 92%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：Leaf社於1998年發售的18X美少女PC用AVG「WHITE ALBUM」，就當時來說、該遊戲的情節性、音樂和人物刻畫可算是比較優秀的鎮社之作。其實這部作品提出要動畫化已經是多年前的事情了，而最近才終於被正式列入製作日程，預定於20...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/27/d7/512190_3FtCT.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/27/d7/512190_3FtCT.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/512190">琉璃的宝石</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>StudioBind</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>18785</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：1/13</div><div class="progress-bar" style="width: 8%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：最喜欢闪亮亮事物的女高中生──谷川瑠璃，有天听说「可以靠自己采到水晶！」而为了寻找水晶前往山中。她在山里遇见专攻矿物学的女研究生──荒砥凪，于是两人决定一同采集矿物。有时为了寻找水晶走在山中的道路，有时为了捡拾石榴石浸在溪水中，有时又为了寻...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/83/d3/374319_JSG4d.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/83/d3/374319_JSG4d.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/374319">无意间变成狗，被喜欢的女生捡回家。</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>卖肉</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>8758</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>5.3</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：10/12</div><div class="progress-bar" style="width: 83%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：醒来后，发现自己变成了心仪的同班同学 犬饲 养的狗！在学校面无表情的她，其实超爱狗的！散步、洗澡、上厕所——被当作狗饲养的每一天突发事件都不断。虽然想早点变回人类，但是被喜欢的人彻底爱着的生活是幸福的......再这样下去，身心都会变成狗！...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/d2/52/110600_8rZ1F.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/d2/52/110600_8rZ1F.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/110600">旋转少女</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>7238</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.4</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：4/12</div><div class="progress-bar" style="width: 33%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：在“东京大决战”结束十年之后，日本各地区已经成为了一个个独立国家。而一名任职于自警团、成绩平平的女孩森友望未，某日心血来潮地踏上了横跨日本列岛诸国的旅程。 她沿途邂逅了响逢衣、御园千绫、小坂结季奈等人，这四个女孩将背负起守护和平的使命。而在...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/b8/26/498934_KffF9.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/b8/26/498934_KffF9.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/498934">群花绽放，彷如修罗</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>校园</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>8848</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>6.6</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：3/12</div><div class="progress-bar" style="width: 25%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：住在人口只有600人的小岛十鸣岛的花奈，她非常喜欢朗读，甚至为岛上的孩子们举办朗读会。
+感受到花奈的“阅读”具有吸引人的力量的瑞希，邀请她加入自己担任部长的广播社。
+“说出你真正的心愿，我会帮你实现”
+“我想加入广播社。”
+决定加入...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/5f/18/282433_9wDx9.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/5f/18/282433_9wDx9.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/282433">别对映像研出手！</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>汤浅政明</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>20290</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：2/12</div><div class="progress-bar" style="width: 17%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：高中1年级学生浅草绿，是强调“设定即生命”的动画迷。在素描本上描绘积累各种各样的想法，却因不能一个人行动做事而无法迈出走向动画制作的一步。对于浅草这种才能，拥有制片人气质的金森沙耶香很快注意到了。同时，得知同学兼新星读者模特的水崎燕，其...</p></div></div></div><div class="bangumi-pagination"><a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false">首页</a><a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a><span class="bangumi-pagenum">2 / 3</span><a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a><a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a></div></div><div id="bangumi-item3"><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/9e/7c/419613_5IY5Y.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/9e/7c/419613_5IY5Y.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/419613">疯狂动物城2</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全1话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>剧场版</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>1237</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：1/1</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：In Walt Disney Animation Studios’ “Zootopia 2,” detectives Judy Hopps (voiced by Ginnifer Goodwin) and Nick Wilde (voice...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/04/dc/29883_jQ4Hz.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/04/dc/29883_jQ4Hz.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/29883">新・福音战士剧场版：终</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全1话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>剧场版</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>25090</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.4</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：1/1</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：这是《福音战士新剧场版》的第四部，也是最终版。美里以及她的反 NERV 组织 Wille 来到巴黎，这里被核心染成红色，奇迹号战舰的船员降落在安全塔上，他们只有720秒能修复这个城市。 NERV的福音战士群出现时，真理的EVA改八号机进行拦...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/52/88/390555_11QS3.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/52/88/390555_11QS3.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/390555">新 吊带袜天使</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>21219</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.6</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：13/13</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：神と悪魔の狭間の街、ダテンシティ。
+今日も人知れず恐ろしい悪霊＜ゴースト＞たちが街を蝕む。
+そんな時、人々の欲望や怨念の魂たる悪霊＜ゴースト＞を、人知の及ばぬ光をもって消し去る者達がいた。
+その名は、天使 パンティ＆ストッキング！！...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/38/44/398951_973Z3.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/38/44/398951_973Z3.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/398951">更衣人偶坠入爱河 第二季</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>恋爱</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>23348</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/12</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：以某次的相遇为契机，喜多川海梦和五条新菜透过Cosplay加深了交流。
+他们还有许多想Cosplay的角色和想制作的服装。
+
+透过和同学们的交流，以及新的Cosplay同伴的相遇，近一步拓展了海梦和新菜的世界。
+除此之外，新菜与令人...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/93/79/440095_HJh7H.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/93/79/440095_HJh7H.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/440095">浪浪山小妖怪</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全1话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>剧场版</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>2215</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.1</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：1/1</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：本片讲述的是一个无名小妖弃暗投明、掀翻妖怪老巢的故事，在此过程中他逐渐认识到是非对错，意在表达人性的温暖和善良的主题。...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/6e/1a/509986_99qsc.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/6e/1a/509986_99qsc.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/509986">末日后酒店</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>28004</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8.2</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/12</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：人类离开后，地球经历了漫长的岁月。
+位于日本首都东京银座的「银河楼」酒店，至今仍在营业中。
+工作人员是以酒店机器人八千代为中心，在各个部门工作的员工机器人们。
+它们一边等待老板的归来和再次迎接人类的时刻，一边在没有住客的酒店里专心致志...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/ca/48/214265_uHAIG.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/ca/48/214265_uHAIG.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/214265">少女☆歌剧 Revue Starlight</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>29105</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.9</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/12</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：“舞台少女”——以未来的舞台女演员为目标，光芒四溢的少女们。
+某天，她们收到了一封邮件。“请去取得吧你所希望的那颗星”为了摘取闪耀的星星，而聚集于选拔会场的9名舞台少女。
+追求光芒的心意、执着、命运——在舞台上交错。
+现在，正是拉开R...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/d3/5d/531159_BayD9.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/d3/5d/531159_BayD9.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/531159">时光流逝，饭菜依旧美味</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>原创</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>23305</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.7</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/12</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：可爱×美味=最强美食
+五名刚刚成为大学生的女孩们共同演绎的日常故事。
+热爱美食，想和大家一起尽情玩耍，学习也要稍加努力，如此这般，尽情享受大学生活吧！...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/a6/39/485936_y0bX8.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/a6/39/485936_y0bX8.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/485936">mono女孩</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全12话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>芳文社</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>18446</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>7.2</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：12/12</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：这个周末要怎么度过呢？
+高中摄影社社员·雨宫纱月，因为最喜欢的社长毕业而变得意志消沉，纱月在另一位社员，同时也是她的好友的雾山杏的鼓励下，决定再次投入社团活动好好努力。
+然而，纱月干劲十足地在网拍买下的360度相机却迟迟没有送来。
+杏...</p></div></div></div><div class="bangumi-item"><div class="bangumi-picture"><img src="https://lain.bgm.tv/r/400/pic/cover/l/a7/49/8402_Q9mLv.jpg" data-src="https://lain.bgm.tv/r/400/pic/cover/l/a7/49/8402_Q9mLv.jpg" referrerpolicy="no-referrer" loading="lazy" width="110" style="width:110px;margin:20px auto;"/></div><div class="bangumi-info"><div class="bangumi-title"><a target="_blank" href="https://bangumi.tv/subject/8402">吊带袜天使</a></div><div class="bangumi-meta"><span class="bangumi-info-items"><span class="bangumi-info-item"><span class="bangumi-info-total">全13话</span><em class="bangumi-info-label-em">0</em></span><span class="bangumi-info-item bangumi-type"><span class="bangumi-info-label">类型</span><em>动画</em></span><span class="bangumi-info-item bangumi-tag"><span class="bangumi-info-label">标签</span><em>GAINAX</em></span><span class="bangumi-info-item bangumi-info-item-follow"><span class="bangumi-info-label">关注</span><em>32432</em></span><span class="bangumi-info-item bangumi-info-item-score"><span class="bangumi-info-label">评分</span><em>8</em></span></span></div><div class="bangumi-progress" style="margin-top:10px;"><div class="bangumi-progress-text">追番进度：13/13</div><div class="progress-bar" style="width: 100%;"></div></div><div class="bangumi-summary"><p class="has-bangumi-progress">简介：在天堂和地狱的裂缝之间有一座城市—堕天城（Daten City），在那里人们一直饱受“恶灵（Ghost）”的袭击。
+腐蚀人心的黑暗，至今仍在悄悄地侵蚀这个城市，有人正试图以超自然力，消灭这些由欲望产生的恶灵，担负了这驱逐黑暗的使命。
+因...</p></div></div></div><div class="bangumi-pagination"><a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false">首页</a><a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a><span class="bangumi-pagenum">2 / 3</span><a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a><a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a></div></div></div><script>window.hexoBilibiliBangumiOptions = {
+    bangumiLazyload: true,
+    show: 2
+}
+if (true) {
+    hexoBilibiliBangumiOptions.pugTemplate = `.bangumi-item.bangumi-hide
+  .bangumi-picture
+    img(
+      src=('https:' + item.cover.replace(/^https:/, ''))
+      data-src=lazyload ? item.cover : null
+      referrerpolicy="no-referrer"
+      loading=lazyload ? "lazy" : "eager"
+      width="110"
+      style="width:110px;margin:20px auto;"
+    )
+  .bangumi-info
+    .bangumi-title
+      a(target="_blank" href='https://bangumi.tv/subject/' + item.id)= item.title || ('未知')
+    .bangumi-meta
+      span.bangumi-info-items(style=metaColor ? 'color:' + metaColor + ';' : '')
+        if item.totalCount && item.type !== '游戏'
+          span.bangumi-info-item
+            span.bangumi-info-total= item.totalCount ? '全' + item.totalCount + '话' : '-'
+            em.bangumi-info-label-em 0
+        span.bangumi-info-item.bangumi-type
+          span.bangumi-info-label= ('类型')
+          em= item.type
+        span.bangumi-info-item.bangumi-tag
+          span.bangumi-info-label= ('标签')
+          em= item.tags
+        span.bangumi-info-item.bangumi-info-item-follow
+          span.bangumi-info-label= ('关注')
+          em= item.collect || "-"
+        span.bangumi-info-item.bangumi-info-item-score
+          span.bangumi-info-label= ('评分')
+          em= item.score || "-"
+
+    if item.type !== '游戏' && progressBar !== false
+      .bangumi-progress(style="margin-top:10px;")
+        .bangumi-progress-text 追#{type === 'bangumi' ? '番' : '剧'}进度：#{item.ep_status}/#{item.totalCount}
+        .progress-bar(style='width: ' + (item.progress > 100 ? 100 : item.progress) + '%;')
+
+    .bangumi-summary(style=color ? 'color:' + color + ';' : '')
+      p(class=progressBar ? 'has-bangumi-progress' : '')= ('简介') + '：' + (item.des || ('暂无简介'))
+
+  if showMyComment && (item.myComment || item.myStars)
+    .bangumi-comments(style=color ? 'color:' + color + ';' : '')
+      .bangumi-my-comments
+        | #{('我的评分')}：
+        if item.myStars
+          span.bangumi-starstop
+            span(class='bangumi-starlight stars' + item.myStars)
+        else
+          | 暂无
+        br
+        | #{('我的评价')}：#{item.myComment || '暂无'}
+`;
+    hexoBilibiliBangumiOptions.pugOptions = {
+        loading: '',
+        metaColor: '',
+        type: 'bangumi',
+        color: '',
+        lazyload: true,
+        showMyComment: false,
+        lazyloadAttrName: '',
+        srcValue: '__image__'
+    }
+    hexoBilibiliBangumiOptions.pagenumsPre = [23,25,172];
+    hexoBilibiliBangumiOptions.pug = require('pug');
+}</script><script>"use strict";/*
+ * @Author       : HCLonely
+ * @Date         : 2024-09-11 15:40:57
+ * @LastEditTime : 2025-07-09 20:36:01
+ * @LastEditors  : HCLonely
+ * @FilePath     : /hexo-bilibili-bangumi/src/lib/templates/index.js
+ * @Description  : 前端页面交互脚本，实现标签页切换和分页加载功能。
+ *                 包含自定义DOM操作方法、标签页点击事件处理，以及
+ *                 通过AJAX异步加载更多数据的分页功能。
+ */(function(){function a(){this.classList.add("bangumi-active");let a=this.siblings();for(let b=0;b<a.length;b++)a[b].classList.remove("bangumi-active");// 显示对应板块
+const b=this.id.replace("tab","item"),c=document.getElementById(b);c.classList.remove("bangumi-hide"),c.classList.add("bangumi-show"),a=document.getElementById(b).siblings();for(let b=0;b<a.length;b++)a[b].classList.remove("bangumi-show"),a[b].classList.add("bangumi-hide")}Element.prototype.siblings=function(){const a=[],b=this.parentNode.children;for(let c=0;c<b.length;c++)b[c]!==this&&a.push(b[c]);return a};const b=document.getElementsByClassName("bangumi-tab");for(let c=0;c<b.length;c++)b[c].onclick=a,b[c].onclick.apply(b[c]);"undefined"!=typeof hexoBilibiliBangumiOptions.pagenumsPre&&axios.get(new URL("../bangumis.json",window.location.href)).then(a=>{if(a.data){const b={wantWatch:a.data.wantWatch.slice(10).map(a=>hexoBilibiliBangumiOptions.pug.render(hexoBilibiliBangumiOptions.pugTemplate,{item:a,...hexoBilibiliBangumiOptions.pugOptions})).join("\n"),watching:a.data.watching.slice(10).map(a=>hexoBilibiliBangumiOptions.pug.render(hexoBilibiliBangumiOptions.pugTemplate,{item:a,...hexoBilibiliBangumiOptions.pugOptions})).join("\n"),watched:a.data.watched.slice(10).map(a=>hexoBilibiliBangumiOptions.pug.render(hexoBilibiliBangumiOptions.pugTemplate,{item:a,...hexoBilibiliBangumiOptions.pugOptions})).join("\n")};document.querySelectorAll("#bangumi-item1>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.wantWatch),document.querySelectorAll("#bangumi-item2>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.watching),document.querySelectorAll("#bangumi-item3>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.watched)}}),document.getElementsByClassName("bangumi-tab")[hexoBilibiliBangumiOptions.show].click()})();"use strict";/*
+ * @Author       : HCLonely
+ * @Date         : 2024-09-11 15:40:57
+ * @LastEditTime : 2025-07-09 20:36:29
+ * @LastEditors  : HCLonely
+ * @FilePath     : /hexo-bilibili-bangumi/src/lib/templates/pagination.js
+ * @Description  : 分页功能实现脚本，提供首页、上一页、下一页、末页等导航功能。
+ *                 实现了页码显示、页面内容切换、图片懒加载等功能，每页显示10条数据，
+ *                 支持自定义预加载数据量配置。
+ */(function(){var a=Math.ceil;function b(b,c){return`${b+1} / ${a(0==c.length/10?1:a(c.length/10))}`}function c(){const a=this.parentNode.siblings();g(a,0),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(0,a)}function d(){const a=this.parentNode.siblings();let c=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;c=c.substr(0,c.indexOf("/")-1),c=parseInt(c,10)-1,0<c&&c--,g(a,c),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(c,a)}function e(){const c=this.parentNode.siblings();let d=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;d=d.substr(0,d.indexOf("/")-1),d=parseInt(d,10)-1,d<a(c.length/10)-1&&d++,g(c,d),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(d,c)}function f(){const c=this.parentNode.siblings();g(c,a(c.length/10)-1),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(-1==a(c.length/10)-1?0:a(c.length/10)-1,c)}function g(a,b){for(let c=0;c<a.length;c++)if(Math.floor(c/10)===b){a[c].classList.remove("bangumi-hide");const[b]=a[c].getElementsByTagName("img");hexoBilibiliBangumiOptions.bangumiLazyload&&(b.src=b.getAttribute("data-src"))}else a[c].classList.add("bangumi-hide")}const h=document.getElementsByClassName("bangumi-firstpage"),j=document.getElementsByClassName("bangumi-previouspage"),k=document.getElementsByClassName("bangumi-nextpage"),l=document.getElementsByClassName("bangumi-lastpage"),m=document.getElementsByClassName("bangumi-pagenum");for(let b=0;b<h.length;b++){h[b].onclick=c,j[b].onclick=d,k[b].onclick=e,l[b].onclick=f;// set page num
+const g="undefined"==typeof hexoBilibiliBangumiOptions.pagenumsPre?m[b].parentNode.siblings().length:hexoBilibiliBangumiOptions.pagenumsPre[b]??m[b].parentNode.siblings().length;h[b].click(),m[b].innerText=`1 / ${0===a(g/10)?1:a(g/10)}`}})();</script>
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Aronnax Lin</p>
+  <div class="site-description" itemprop="description">This is a blog about animation, technology, programming and more.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aronnaxlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aronnaxlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lilinhan917@gmail.com" title="E-Mail → mailto:lilinhan917@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/linhan177/" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;linhan177&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/386410153" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;386410153" rel="noopener" target="_blank"><i class="fab iconfont icon-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">晋ICP备2025069801号-1 </a>
+      <img src="/source%5Cimages%5C%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14010502990345" rel="noopener" target="_blank">晋公网安备14010502990345号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aronnax</span>
+</div>
+  <div class="powered-by">Powered By    <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -143,7 +143,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">    location</span><span style="color:#B392F0"> / </span><span style="color:#E1E4E8">{</span></span>
 <span class="line"><span style="color:#F97583">        proxy_pass </span><span style="color:#E1E4E8">http://127.0.0.1:5244; </span><span style="color:#6A737D"># Openlist 默认端口</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        # --- 基础头信息 ---</span></span>
 <span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">Host $host;</span></span>
 <span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">X-Real-IP $remote_addr;</span></span>
@@ -153,15 +153,15 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">X-Forwarded-Port $server_port;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D">        # --- 关键优化配置 (看番/传文件必加) ---</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        # 1. 允许大文件上传 (否则网页端上传大文件会报错)</span></span>
-<span class="line"><span style="color:#F97583">        client_max_body_size </span><span style="color:#79B8FF">20000m</span><span style="color:#E1E4E8">; </span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        client_max_body_size </span><span style="color:#79B8FF">20000m</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        # 2. 视频拖拽进度条支持 (Range Requests)</span></span>
 <span class="line"><span style="color:#6A737D">        # 这一步对于 Infuse/Web 播放器至关重要</span></span>
 <span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">Range $http_range;</span></span>
 <span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">If-Range $http_if_range;</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        # 3. 防止重定向问题</span></span>
 <span class="line"><span style="color:#F97583">        proxy_redirect </span><span style="color:#79B8FF">off</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
@@ -173,7 +173,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <ol start="4">
 <li>重载Nginx服务</li>
 </ol>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">nginx</span><span style="color:#79B8FF"> -t</span><span style="color:#E1E4E8"> </span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">nginx</span><span style="color:#79B8FF"> -t</span></span>
 <span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> reload</span><span style="color:#9ECBFF"> nginx</span></span></code></pre>
 <h1 id="配置注意">配置注意</h1>
 <p>不出意外的话，现在访问<code>openlist.example.com</code>即可回到熟悉的Openlist主页，请在添加网盘时使用302重定向，防止播放视频卡顿。</p>  </div> <!-- Suggest edit --> <div class="flex justify-between mt-16 gap-4 flex-wrap italic"> <a href="https://github.com/yashjawale/yashjawale.github.io/edit/main/src/content/blog/openlist服务器端配置备忘录.md" target="_blank" rel="noopener noreferrer" class="hover:underline underline-offset-4 opacity-70 hover:opacity-100"><svg width="1em" height="1em" class="inline-block" data-icon="mdi:pencil-outline">   <symbol id="ai:mdi:pencil-outline" viewBox="0 0 24 24"><path fill="currentColor" d="m14.06 9l.94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></symbol><use href="#ai:mdi:pencil-outline"></use>  </svg>

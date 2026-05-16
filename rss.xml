@@ -16,7 +16,7 @@
 &lt;p&gt;为了验证本项目，已经在 CloudFlare Pages 上成功部署了两本教材的内容，尚硅谷 JavaWeb 和谢希仁老师的经典计算机网络教材，由于书籍版权原因暂不可公开，只能放一张截图，后续会找一本已在公共领域范围内的书籍做 Demo 发布。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../../assets/blogimages/mineru_pipeline/mineru_screenshot.png&quot; alt=&quot;MinerU Pipeline Demo&quot;&gt;&lt;/p&gt;
 &lt;h2&gt;这个流程也需要 AI Native&lt;/h2&gt;
-&lt;p&gt;这个项目本身就是几乎全部 Vibe Coding 出来的。既然如此，别家的 Hermes、Codex、Claude Code 也应该能轻松接手。所以项目里已经附带了一个 Skill，只需让 Agent 装上这个 Skill，再发给 TA 一本 PDF 链接，跟着指引走完 MinerU API / ClaudeFlare API 的填写，就可以直接上线了。&lt;/p&gt;
+&lt;p&gt;这个项目本身就是几乎全部 Vibe Coding 出来的。既然如此，别家的 Hermes、Codex、Claude Code 也应该能轻松接手。所以项目里已经附带了一个 Skill，只需让 Agent 装上这个 Skill，再发给 TA 一本 PDF 链接，跟着指引走完 MinerU API / Cloudflare API 的填写，就可以直接上线了。&lt;/p&gt;
 &lt;h2&gt;适合什么内容？&lt;/h2&gt;
 &lt;p&gt;比较适合这些场景：教材、课程讲义、培训资料数字化；技术书、课程资料整理成在线文档；公司内部 PDF 手册转知识库；公开资料转成能浏览的网站；个人学习资料整理成长期维护的阅读站点。&lt;/p&gt;
 &lt;p&gt;当然不是万能的。PDF 质量、MinerU 解析效果、原书排版复杂度都会影响最终结果。特别是扫描质量差、版式复杂、公式很多的书，还是得靠人检查修正。但至少，最重复、最机械、最容易让人放弃的那部分，可以先交给它。&lt;/p&gt;

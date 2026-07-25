@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><script>
+			const savedSiteLanguage = localStorage.getItem('site-language')
+			document.documentElement.dataset.siteLang =
+				savedSiteLanguage === 'en' ? 'en' : 'zh'
+		</script><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Astro v5.13.7"><!-- Favicons --><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><meta name="apple-mobile-web-app-title" content="Saral Theme"><link rel="manifest" href="/site.webmanifest"><!-- Canonical URL --><link rel="canonical" href="https://aronnax.site/blog/komga-google-drive-blog/"><!-- Primary Meta Tags --><title>用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库</title><meta name="title" content="用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库"><meta name="description" content="记录如何在一台小容量 VPS 上，通过 rclone 挂载 Google Drive 并部署 Komga，实现容量上不封顶的私人漫画库，以及在此过程中踩过的各种坑。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://aronnax.site/blog/komga-google-drive-blog/"><meta property="og:title" content="用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库"><meta property="og:description" content="记录如何在一台小容量 VPS 上，通过 rclone 挂载 Google Drive 并部署 Komga，实现容量上不封顶的私人漫画库，以及在此过程中踩过的各种坑。"><meta property="og:image" content="https://aronnax.site/saral-og.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://aronnax.site/blog/komga-google-drive-blog/"><meta property="twitter:title" content="用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库"><meta property="twitter:description" content="记录如何在一台小容量 VPS 上，通过 rclone 挂载 Google Drive 并部署 Komga，实现容量上不封顶的私人漫画库，以及在此过程中踩过的各种坑。"><meta property="twitter:image" content="https://aronnax.site/saral-og.jpg"><!-- RSS Auto-discovery --><link rel="alternate" type="application/rss+xml" title="Aronnax's Blog RSS Feed" href="https://aronnax.site/rss.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/_slug_.D-UNp8fG.css"><script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.11.2 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.2":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head> <body class="text-foreground bg-background font-light dark:text-foreground-dark dark:bg-background-dark transition-colors"> <header class="fixed top-0 w-full z-40 bg-background dark:bg-background-dark"> <nav class=""> <div class="app-container flex justify-between items-center py-5"> <a href="/home" aria-label="首页 / Home"> <svg width="36" height="36" viewBox="0 0 1080 1080" fill="none">
+<path d="M520.357 384.929C517.5 356.119 505.238 333.738 483.571 317.786C461.905 301.833 432.5 293.857 395.357 293.857C370.119 293.857 348.81 297.429 331.429 304.571C314.048 311.476 300.714 321.119 291.429 333.5C282.381 345.881 277.857 359.929 277.857 375.643C277.381 388.738 280.119 400.167 286.071 409.929C292.262 419.69 300.714 428.143 311.429 435.286C322.143 442.19 334.524 448.262 348.571 453.5C362.619 458.5 377.619 462.786 393.571 466.357L459.286 482.071C491.19 489.214 520.476 498.738 547.143 510.643C573.81 522.548 596.905 537.19 616.429 554.571C635.952 571.952 651.071 592.429 661.786 616C672.738 639.571 678.333 666.595 678.571 697.071C678.333 741.833 666.905 780.643 644.286 813.5C621.905 846.119 589.524 871.476 547.143 889.571C505 907.429 454.167 916.357 394.643 916.357C335.595 916.357 284.167 907.31 240.357 889.214C196.786 871.119 162.738 844.333 138.214 808.857C113.929 773.143 101.19 728.976 100 676.357H249.643C251.31 700.881 258.333 721.357 270.714 737.786C283.333 753.976 300.119 766.238 321.071 774.571C342.262 782.667 366.19 786.714 392.857 786.714C419.048 786.714 441.786 782.905 461.071 775.286C480.595 767.667 495.714 757.071 506.429 743.5C517.143 729.929 522.5 714.333 522.5 696.714C522.5 680.286 517.619 666.476 507.857 655.286C498.333 644.095 484.286 634.571 465.714 626.714C447.381 618.857 424.881 611.714 398.214 605.286L318.571 585.286C256.905 570.286 208.214 546.833 172.5 514.929C136.786 483.024 119.048 440.048 119.286 386C119.048 341.714 130.833 303.024 154.643 269.929C178.69 236.833 211.667 211 253.571 192.429C295.476 173.857 343.095 164.571 396.429 164.571C450.714 164.571 498.095 173.857 538.571 192.429C579.286 211 610.952 236.833 633.571 269.929C656.19 303.024 667.857 341.357 668.571 384.929H520.357ZM868.661 915.286C845.089 915.286 824.851 906.952 807.946 890.286C791.28 873.381 782.946 853.143 782.946 829.571C782.946 806.238 791.28 786.238 807.946 769.571C824.851 752.905 845.089 744.571 868.661 744.571C891.518 744.571 911.518 752.905 928.661 769.571C945.804 786.238 954.375 806.238 954.375 829.571C954.375 845.286 950.327 859.69 942.232 872.786C934.375 885.643 924.018 896 911.161 903.857C898.304 911.476 884.137 915.286 868.661 915.286Z" fill="currentColor" />
+</svg> </a> <div class="gap-8 hidden md:flex items-center"> <a href="/home" class="text-lg" target="_blank" data-astro-cid-rieiwi5x>  <span data-lang="zh">首页</span> <span data-lang="en">Home</span>  </a> <a href="/blog" class="text-lg active" target="_self" data-astro-cid-rieiwi5x>  <span data-lang="zh">文章</span> <span data-lang="en">Blog</span>  </a> <a href="/archive" class="text-lg" target="_self" data-astro-cid-rieiwi5x>  <span data-lang="zh">归档</span> <span data-lang="en">Archive</span>  </a> <a href="/about" class="text-lg" target="_self" data-astro-cid-rieiwi5x>  <span data-lang="zh">关于</span> <span data-lang="en">About</span>  </a> <a href="/moments" class="text-lg" target="_self" data-astro-cid-rieiwi5x>  <span data-lang="zh">动态</span> <span data-lang="en">Moments</span>  </a> <a href="/friends" class="text-lg" target="_self" data-astro-cid-rieiwi5x>  <span data-lang="zh">友邻</span> <span data-lang="en">Friends</span>  </a>  <button type="button" data-language-toggle class="text-sm font-semibold tracking-[0.16em] opacity-70 hover:opacity-100 transition-opacity" aria-label="切换界面语言 / Switch interface language" title="切换界面语言 / Switch interface language"> <span data-language-toggle-label>EN</span> </button> <div class="border-[1px] border-foreground dark:border-foreground-dark rounded-full flex justify-center items-center text-foreground dark:text-foreground-dark [&#38;>*:hover]:brightness-75 md:opacity-80 [&#38;>*]:cursor-pointer" data-astro-cid-lgn464si> <button data-theme="theme-auto" aria-label="跟随系统 / Auto theme" title="跟随系统 / Auto theme" class="theme-button theme-auto" data-astro-cid-lgn464si> <svg width="1em" height="1em" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:brightness-auto">   <symbol id="ai:mdi:brightness-auto" viewBox="0 0 24 24"><path fill="currentColor" d="m14.3 16l-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69L8.69 4H4v4.69L.69 12L4 15.31V20h4.69L12 23.31L15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></symbol><use href="#ai:mdi:brightness-auto"></use>  </svg> </button> <button data-theme="theme-light" aria-label="浅色模式 / Light theme" title="浅色模式 / Light theme" class="theme-button theme-light" data-astro-cid-lgn464si> <svg width="1em" height="1em" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:white-balance-sunny">   <symbol id="ai:mdi:white-balance-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="m3.55 19.09l1.41 1.41l1.8-1.79l-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71l1.8 1.79l1.41-1.41l-1.79-1.8M20.45 5l-1.41-1.4l-1.8 1.79l1.42 1.42M13 1h-2v3h2M6.76 5.39L4.96 3.6L3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></symbol><use href="#ai:mdi:white-balance-sunny"></use>  </svg> </button> <button data-theme="theme-dark" aria-label="深色模式 / Dark theme" title="深色模式 / Dark theme" class="theme-button theme-dark" data-astro-cid-lgn464si> <svg width="1em" height="1em" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:moon-and-stars">   <symbol id="ai:mdi:moon-and-stars" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:moon-and-stars"></use>  </svg> </button> </div>  </div> <button class="md:hidden cursor-pointer" id="nav-open-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单 / Open navigation menu" title="打开导航菜单 / Open navigation menu"> <svg width="32" height="32" aria-hidden="true" data-icon="mdi:menu">   <symbol id="ai:mdi:menu" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></symbol><use href="#ai:mdi:menu"></use>  </svg> </button> <!-- Mobile nav --> <div class="md:hidden fixed inset-0 z-40 overflow-hidden pointer-events-none" id="mobile-menu"> <button type="button" class="absolute inset-0 bg-black/30 opacity-0 transition-opacity" id="nav-overlay" aria-label="关闭导航菜单 / Close navigation menu" title="关闭导航菜单 / Close navigation menu"></button> <div class="absolute top-0 right-0 h-screen w-5/6 max-w-sm translate-x-full bg-background dark:bg-background-dark px-8 py-6 transition-transform border-l-[1px] border-background pointer-events-auto" data-mobile-menu-panel> <button id="nav-close-btn" class="ml-auto block cursor-pointer" aria-label="关闭导航菜单 / Close navigation menu" title="关闭导航菜单 / Close navigation menu"> <svg width="32" height="32" aria-hidden="true" data-icon="mdi:close">   <symbol id="ai:mdi:close" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"/></symbol><use href="#ai:mdi:close"></use>  </svg> </button> <div class="flex flex-col h-full items-start gap-8 pt-16"> <a href="/home" class="text-4xl font-light" data-astro-cid-rieiwi5x>  <span data-lang="zh">首页</span> <span data-lang="en">Home</span>  </a> <a href="/blog" class="text-4xl font-light active" data-astro-cid-rieiwi5x>  <span data-lang="zh">文章</span> <span data-lang="en">Blog</span>  </a> <a href="/archive" class="text-4xl font-light" data-astro-cid-rieiwi5x>  <span data-lang="zh">归档</span> <span data-lang="en">Archive</span>  </a> <a href="/about" class="text-4xl font-light" data-astro-cid-rieiwi5x>  <span data-lang="zh">关于</span> <span data-lang="en">About</span>  </a> <a href="/moments" class="text-4xl font-light" data-astro-cid-rieiwi5x>  <span data-lang="zh">动态</span> <span data-lang="en">Moments</span>  </a> <a href="/friends" class="text-4xl font-light" data-astro-cid-rieiwi5x>  <span data-lang="zh">友邻</span> <span data-lang="en">Friends</span>  </a>  <button type="button" data-language-toggle class="text-base font-semibold tracking-[0.16em] opacity-70 hover:opacity-100 transition-opacity" aria-label="切换界面语言 / Switch interface language" title="切换界面语言 / Switch interface language"> <span data-language-toggle-label>EN</span> </button> <div class="mt-4 border-[1px] border-foreground dark:border-foreground-dark rounded-full flex justify-center items-center text-foreground dark:text-foreground-dark [&#38;>*:hover]:brightness-75 md:opacity-80 [&#38;>*]:cursor-pointer" data-astro-cid-lgn464si> <button data-theme="theme-auto" aria-label="跟随系统 / Auto theme" title="跟随系统 / Auto theme" class="theme-button theme-auto" data-astro-cid-lgn464si> <svg width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:brightness-auto">   <use href="#ai:mdi:brightness-auto"></use>  </svg> </button> <button data-theme="theme-light" aria-label="浅色模式 / Light theme" title="浅色模式 / Light theme" class="theme-button theme-light" data-astro-cid-lgn464si> <svg width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:white-balance-sunny">   <use href="#ai:mdi:white-balance-sunny"></use>  </svg> </button> <button data-theme="theme-dark" aria-label="深色模式 / Dark theme" title="深色模式 / Dark theme" class="theme-button theme-dark" data-astro-cid-lgn464si> <svg width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-lgn464si="true" class="duration-0 text-2xl md:text-xl" data-icon="mdi:moon-and-stars">   <use href="#ai:mdi:moon-and-stars"></use>  </svg> </button> </div>  </div> </div> </div> </div> </nav> <script>
+		const mobileMenu = document.querySelector('#mobile-menu')
+		const navOpenButton = document.querySelector('#nav-open-btn')
+		const navCloseButton = document.querySelector('#nav-close-btn')
+		const navOverlay = document.querySelector('#nav-overlay')
+		const header = document.querySelector('header')
+
+		function setNavOpen(isOpen) {
+			mobileMenu?.classList.toggle('mobile-nav-open', isOpen)
+			header?.classList.toggle('mobile-nav-active', isOpen)
+			navOpenButton?.setAttribute('aria-expanded', String(isOpen))
+			window.dispatchEvent(
+				new CustomEvent('mobile-nav-toggle', {
+					detail: { isOpen },
+				})
+			)
+		}
+
+		navOpenButton?.addEventListener('pointerdown', (event) => {
+			event.preventDefault()
+			setNavOpen(true)
+		})
+		navOpenButton?.addEventListener('click', () => setNavOpen(true))
+		navCloseButton?.addEventListener('pointerdown', (event) => {
+			event.preventDefault()
+			setNavOpen(false)
+		})
+		navCloseButton?.addEventListener('click', () => setNavOpen(false))
+		navOverlay?.addEventListener('pointerdown', (event) => {
+			event.preventDefault()
+			setNavOpen(false)
+		})
+		navOverlay?.addEventListener('click', () => setNavOpen(false))
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				setNavOpen(false)
+			}
+		})
+	</script> </header> <script>
+	function reComputeTheme() {
+		if (
+			localStorage.theme === 'dark' ||
+			(!('theme' in localStorage) &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+
+		const theme = localStorage.theme || 'auto'
+		document
+			.querySelectorAll(`[data-theme="theme-${theme}"]`)
+			.forEach((el) => el.classList.add('active'))
+	}
+
+	function addThemeEventListeners() {
+		themeButtons = document.querySelectorAll('.theme-button')
+		themeButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				themeButtons.forEach((btn) => btn.classList.remove('active'))
+				button.classList.add('active')
+				if (button.dataset.theme === 'theme-auto') {
+					localStorage.removeItem('theme')
+					reComputeTheme()
+				} else {
+					localStorage.theme = button.dataset.theme.replace('theme-', '')
+					document.documentElement.classList.toggle(
+						'dark',
+						button.dataset.theme === 'theme-dark'
+					)
+				}
+			})
+		})
+	}
+
+	// Set active class on OS theme change
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', (_e) => {
+			reComputeTheme()
+		})
+
+	// run recomputeTheme when screen crosses 768px
+	window.matchMedia('(min-width: 768px)').addEventListener('change', (_e) => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
+
+	reComputeTheme()
+
+	// Run on page load
+	window.addEventListener('DOMContentLoaded', () => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
+</script>  <main> <article> <div class="app-container flex flex-col lg:flex-row-reverse justify-between gap-8 py-24 relative"> <div class="md:w-1/4 relative"> <div class="sticky top-0 md:top-28 hidden lg:block"> <nav class="py-12 rounded"><h2 class="text-2xl mr-2 pb-1 mb-3 font-bold"><span data-lang="zh">本页目录</span><span data-lang="en">On This Page</span></h2><ul class="space-y-3"><li><a class="hover:underline underline-offset-4" href="#为什么选择-komga">为什么选择 Komga？</a></li><li><a class="hover:underline underline-offset-4" href="#架构总览">架构总览</a></li><li><a class="hover:underline underline-offset-4" href="#详细配置指南">详细配置指南</a><ul class="ml-4 mt-2 space-y-2 border-l border-gray-300 dark:border-gray-700 pl-4"><li><a class="hover:underline underline-offset-4 text-sm opacity-80" href="#第一步配置-google-cloud-项目与-oauth">第一步：配置 Google Cloud 项目与 OAuth</a></li><li><a class="hover:underline underline-offset-4 text-sm opacity-80" href="#第二步配置-rclone-挂载与-systemd-守护">第二步：配置 rclone 挂载与 Systemd 守护</a></li><li><a class="hover:underline underline-offset-4 text-sm opacity-80" href="#第三步使用-docker-部署-komga">第三步：使用 Docker 部署 Komga</a></li><li><a class="hover:underline underline-offset-4 text-sm opacity-80" href="#第四步给-komga-的扫描踩刹车">第四步：给 Komga 的扫描踩刹车</a></li><li><a class="hover:underline underline-offset-4 text-sm opacity-80" href="#第五步日常维护与兜底方案">第五步：日常维护与兜底方案</a></li></ul></li><li><a class="hover:underline underline-offset-4" href="#踩坑记录数据库计数的幽灵错乱">踩坑记录：数据库计数的幽灵错乱</a></li><li><a class="hover:underline underline-offset-4" href="#最后">最后</a></li></ul></nav> </div> </div> <div class="grow w-full md:max-w-[75ch]"> <div> <h1 class="text-4xl sm:text-5xl leading-snug pt-12 font-bold"> 用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库 </h1> <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium"> <span class="uppercase tracking-[0.08em] text-primary dark:text-primary-dark"> Blog </span>  <span class="h-1 w-1 rounded-full bg-foreground/30 dark:bg-foreground-dark/30"></span> <span class="flex flex-wrap gap-x-2 gap-y-1 opacity-60"> <span>#Komga</span><span>#rclone</span><span>#Google Drive</span><span>#Docker</span><span>#自建</span> </span>  </div> <div class="text-lg flex items-center gap-4 flex-wrap py-8"> <!-- Publish date --> <span> <svg width="1em" height="1em" class="inline-block text-primary dark:text-primary-dark" data-icon="mdi:calendar-month-outline">   <symbol id="ai:mdi:calendar-month-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M7 11h2v2H7zm14-6v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2M5 7h14V5H5zm14 12V9H5v10zm-4-6v-2h2v2zm-4 0v-2h2v2zm-4 2h2v2H7zm8 2v-2h2v2zm-4 0v-2h2v2z"/></symbol><use href="#ai:mdi:calendar-month-outline"></use>  </svg> <time datetime="2026-07-25T00:00:00.000Z"> <span data-lang="zh">2026年7月25日</span> <span data-lang="en">25 Jul 2026</span> </time> </span> <!-- Updated date -->  <!-- Read time --> <span> <svg width="1em" height="1em" class="inline-block text-primary dark:text-primary-dark" data-icon="mdi:clock-time-four-outline">   <symbol id="ai:mdi:clock-time-four-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20c4.4 0 8-3.6 8-8s-3.6-8-8-8s-8 3.6-8 8s3.6 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12S6.5 2 12 2m5 11.9l-.7 1.3l-5.3-2.9V7h1.5v4.4z"/></symbol><use href="#ai:mdi:clock-time-four-outline"></use>  </svg> <span data-lang="zh">阅读时长</span> <span data-lang="en">Reading time</span>: 13 min read </span> </div>  </div> <div class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto">  <blockquote>
+<p>本文由 Claude Sonnet 5 根据真实部署经历攥写；Gemini 3.1 Pro 润色</p>
+</blockquote>
+<p>事情的起因是我手头有一台只剩 20G 硬盘的闲置 VPS。我想用它搭个能长期攒漫画的私人阅读库。</p>
+<p>传统思路是「本地下载好，再定时同步到网盘」。但对于 20G 的小盘来说，稍微多攒几套漫画就满了，更别提还要天天操心同步冲突和冗余占用的问题。</p>
+<p>这篇文章记录的是另一条路：<strong>把 Google Drive 直接「假装」成本地硬盘挂载给服务器，VPS 只负责跑应用和做短期缓存。</strong></p>
+<p>核心工具链很简单：<code>Komga</code> 作为阅读服务端，<code>rclone</code> 提供 VFS（虚拟文件系统）挂载，<code>Google Drive</code> 充当无限后备存储。外围再套上 <code>Docker Compose</code> 和 <code>Cloudflare Tunnel</code> 解决部署和公网访问。</p>
+<p>这套架构听起来特别优雅，跑通之后也确实很好用。但从理论可行到日常稳定，我经历了存储占满、数据库计数错乱、OAuth 授权莫名失效等一系列真实故障。这篇文章把方案、踩过的坑和最终配置都记录下来，希望能帮同样想折腾的小白少走几步弯路。</p>
+<h2 id="为什么选择-komga">为什么选择 Komga？</h2>
+<p><a href="https://komga.org/">Komga</a> 是一个开源的漫画/电子书服务端。它不仅有网页端，能通过 OPDS 接入移动端的阅读 App（比如 Panels、Mihon），还支持元数据刮削。</p>
+<p>最契合这个项目的一点是，它是<strong>无状态</strong>的。书籍文件存放在哪里、怎么组织，Komga 并不在乎。它只负责扫描文件、建立索引、提取缩略图，然后把这些信息存进自己独立的 SQLite 数据库里。</p>
+<p>正是这种「文件与索引完全解耦」的设计，让我们可以放心大胆地把它架在 FUSE 网盘挂载这种伴随网络延迟的文件系统上。</p>
+<h2 id="架构总览">架构总览</h2>
+<p>不废话，先看整体的数据流向：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>┌─────────────┐      ┌──────────────────┐      ┌─────────────┐</span></span>
+<span class="line"><span>│ 你的手机/平板 │ ───▶ │ Cloudflare Tunnel │ ───▶ │     NPM      │</span></span>
+<span class="line"><span>└─────────────┘      │ (内网穿透，无需公网)│      │ (反向代理)    │</span></span>
+<span class="line"><span>                      └──────────────────┘      └──────┬──────┘</span></span>
+<span class="line"><span>                                                         │ 仅限内网通信</span></span>
+<span class="line"><span>                                                         ▼</span></span>
+<span class="line"><span>                                                  ┌─────────────┐</span></span>
+<span class="line"><span>                                                  │    Komga     │</span></span>
+<span class="line"><span>                                                  │  (只读挂载)   │</span></span>
+<span class="line"><span>                                                  └──────┬──────┘</span></span>
+<span class="line"><span>                                                         │ /manga (只读)</span></span>
+<span class="line"><span>                                                         ▼</span></span>
+<span class="line"><span>                                                  ┌─────────────┐</span></span>
+<span class="line"><span>                                                  │ rclone mount │</span></span>
+<span class="line"><span>                                                  │  (VFS 缓存)   │</span></span>
+<span class="line"><span>                                                  └──────┬──────┘</span></span>
+<span class="line"><span>                                                         │ FUSE</span></span>
+<span class="line"><span>                                        本地磁盘 ◀────────┼────────▶ Google Drive</span></span>
+<span class="line"><span>                                       (短期缓存)                    (永久存储)</span></span></code></pre>
+<p>在这个架构下，VPS 永远只缓冲你最近在看的那一小部分数据。漫画下载进去后，rclone 会先将其缓存在本地，后台异步上传到 Drive；阅读时，如果在缓存里就直接读取，不在就实时向 Drive 发起分片下载。磁盘占用和总藏书量完全解耦。</p>
+<hr>
+<h2 id="详细配置指南">详细配置指南</h2>
+<p>为了让小白也能上手，以下是完整的配置流程和排坑说明。</p>
+<h3 id="第一步配置-google-cloud-项目与-oauth">第一步：配置 Google Cloud 项目与 OAuth</h3>
+<p>很多教程会让你直接用 rclone 默认的配置连接网盘，建议不要这么做。默认配置是所有人共享同一个额度，高峰期极易被限流。自己建一个凭证，每天 750GB 的上传额度完全独享。</p>
+<ol>
+<li>登录 <a href="https://console.cloud.google.com/">Google Cloud Console</a>，新建一个项目。</li>
+<li>在「APIs &#x26; Services -> Library」中搜索 <strong>Google Drive API</strong> 并启用。</li>
+<li>在「APIs &#x26; Services -> Credentials」中创建一个 <strong>OAuth 客户端 ID</strong>，应用类型选择 <strong>Desktop app</strong>。</li>
+</ol>
+<p>完成后，你会拿到 <code>client_id</code> 和 <code>client_secret</code>。</p>
+<p><strong>关键避坑：发布状态（Publishing status）</strong>
+刚建好的 OAuth 应用默认是「测试中 (Testing)」状态。这里有两个致命限制：</p>
+<ul>
+<li>只有手动加入「测试用户名单」的账号才能授权，否则会报 403 错误。</li>
+<li>Token 生命周期受限，可能七天后半夜悄悄失效。</li>
+</ul>
+<p>解决方法很简单：在同一个页面，点击 <strong>「发布应用 / Publish App」</strong>，将其切换为 <strong>「生产中 / In production」</strong>。因为这是个人使用，不用担心 Google 的审核流程。授权时浏览器会弹出「未验证应用」的警告，点击高级继续即可。</p>
+<p><strong>沙盒隔离</strong>
+为了安全，可以在 rclone 配置里加上 <code>root_folder_id</code>，将 rclone 的权限锁定在 Drive 的一个特定文件夹内：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[gdrive]</span></span>
+<span class="line"><span style="color:#F97583">type</span><span style="color:#E1E4E8"> = drive</span></span>
+<span class="line"><span style="color:#F97583">client_id</span><span style="color:#E1E4E8"> = 你的_client_id</span></span>
+<span class="line"><span style="color:#F97583">client_secret</span><span style="color:#E1E4E8"> = 你的_client_secret</span></span>
+<span class="line"><span style="color:#F97583">scope</span><span style="color:#E1E4E8"> = drive</span></span>
+<span class="line"><span style="color:#F97583">root_folder_id</span><span style="color:#E1E4E8"> = 你的漫画文件夹ID (从网页端 URL 获取)</span></span></code></pre>
+<h3 id="第二步配置-rclone-挂载与-systemd-守护">第二步：配置 rclone 挂载与 Systemd 守护</h3>
+<p>首先在本地电脑（需要浏览器）执行授权命令，拿到 Token JSON，并填入服务器的 <code>rclone.conf</code> 中：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">rclone</span><span style="color:#9ECBFF"> authorize</span><span style="color:#9ECBFF"> "drive"</span><span style="color:#9ECBFF"> "你的_client_id"</span><span style="color:#9ECBFF"> "你的_client_secret"</span></span></code></pre>
+<p>接着，在服务器上配置 systemd 服务来管理挂载。网络波动后，systemd 能自动帮你恢复挂载。</p>
+<p>创建文件 <code>/etc/systemd/system/komga-rclone.service</code>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[Unit]</span></span>
+<span class="line"><span style="color:#F97583">Description</span><span style="color:#E1E4E8">=Rclone Mount for Komga</span></span>
+<span class="line"><span style="color:#F97583">After</span><span style="color:#E1E4E8">=network-online.target docker.service</span></span>
+<span class="line"><span style="color:#F97583">Wants</span><span style="color:#E1E4E8">=network-online.target</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Service]</span></span>
+<span class="line"><span style="color:#F97583">Type</span><span style="color:#E1E4E8">=notify</span></span>
+<span class="line"><span style="color:#F97583">ExecStart</span><span style="color:#E1E4E8">=/usr/bin/rclone mount gdrive: /root/komga/manga \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --config /root/.config/rclone/rclone.conf \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --cache-dir /var/cache/rclone \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --vfs-cache-mode full \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --vfs-cache-max-size 4G \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --vfs-cache-min-free-space 3G \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --dir-cache-time 168h \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --drive-stop-on-upload-limit \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --allow-other \</span></span>
+<span class="line"><span style="color:#E1E4E8">  --rc --</span><span style="color:#F97583">rc-addr</span><span style="color:#E1E4E8">=127.0.0.1:5572 --rc-no-auth</span></span>
+<span class="line"><span style="color:#F97583">ExecStartPost</span><span style="color:#E1E4E8">=/usr/bin/docker restart -t 120 komga</span></span>
+<span class="line"><span style="color:#F97583">ExecStop</span><span style="color:#E1E4E8">=/bin/fusermount -uz /root/komga/manga</span></span>
+<span class="line"><span style="color:#F97583">Restart</span><span style="color:#E1E4E8">=always</span></span>
+<span class="line"><span style="color:#F97583">RestartSec</span><span style="color:#E1E4E8">=10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Install]</span></span>
+<span class="line"><span style="color:#F97583">WantedBy</span><span style="color:#E1E4E8">=multi-user.target</span></span></code></pre>
+<p><strong>配置解析：</strong></p>
+<ul>
+<li><code>Type=notify</code> 与 <code>ExecStartPost</code>：确保 rclone 完全挂载就绪后，再重启 Komga 容器。否则 Komga 扫到一个空目录，会把所有藏书标记为「已删除」。</li>
+<li><code>--cache-dir /var/cache/rclone</code>：千万别用默认的 <code>/tmp</code>。Ubuntu 的定时任务每天会清理 <code>/tmp</code>，如果正在排队上传的缓存文件被系统删了，数据会直接丢失。</li>
+<li><code>--vfs-cache-mode full</code>：必须开启全缓存，否则每次翻页都会重新向 Drive 发起请求。</li>
+<li><code>--vfs-cache-min-free-space 3G</code>：真正的磁盘防爆护栏。下载速度过快时，软限制 <code>max-size</code> 拦不住，这个参数能在磁盘剩余 3G 时强行切断写入。</li>
+<li><code>--rc</code>：开启本地控制接口。排查问题时，通过这个接口查询状态，绝不能再起一个独立的 rclone 进程去读配置文件，否则极易触发 Google 的并发风控导致 Token 被封。</li>
+</ul>
+<p>启动并设置开机自启：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> daemon-reload</span></span>
+<span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> enable</span><span style="color:#79B8FF"> --now</span><span style="color:#9ECBFF"> komga-rclone</span></span></code></pre>
+<h3 id="第三步使用-docker-部署-komga">第三步：使用 Docker 部署 Komga</h3>
+<p>创建 <code>/root/komga/docker-compose.yml</code>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">services</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  komga</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">gotson/komga:latest</span></span>
+<span class="line"><span style="color:#85E89D">    container_name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">komga</span></span>
+<span class="line"><span style="color:#85E89D">    volumes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">./config:/config</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">./manga:/manga:ro,shared</span></span>
+<span class="line"><span style="color:#85E89D">    ports</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">"127.0.0.1:25600:25600"</span></span>
+<span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">JAVA_TOOL_OPTIONS=-Xmx512m</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">TZ=Asia/Taipei</span></span>
+<span class="line"><span style="color:#85E89D">    mem_limit</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">1g</span></span>
+<span class="line"><span style="color:#85E89D">    stop_grace_period</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">120s</span></span>
+<span class="line"><span style="color:#85E89D">    restart</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unless-stopped</span></span></code></pre>
+<p><strong>关键配置说明：</strong></p>
+<ul>
+<li><code>/manga:ro,shared</code>：<code>ro</code> 表示只读。Komga 不需要修改源文件，防止它随手改个文件导致 rclone 把整本漫画重新上传，白白浪费流量。</li>
+<li><code>127.0.0.1:25600</code>：只监听本地。外部访问统一通过反向代理（如 Nginx Proxy Manager）接入。</li>
+<li><code>stop_grace_period: 120s</code>：给足优雅退出的时间。Docker 默认关机只等 10 秒，如果 Komga 正在扫描数据库时被强制 <code>SIGKILL</code> 杀死，会导致数据库记录错乱。</li>
+</ul>
+<p>在同一目录下运行 <code>docker compose up -d</code> 即可启动。</p>
+<h3 id="第四步给-komga-的扫描踩刹车">第四步：给 Komga 的扫描踩刹车</h3>
+<p>在本地硬盘上，Komga 的默认设置没什么问题。但在网络挂载环境下，必须进入 Komga 的「设置 -> 编辑库 -> 分析」中，<strong>关闭以下两个选项</strong>：</p>
+<ul>
+<li><strong>计算文件的哈希值（File hashing）</strong></li>
+<li><strong>分析页面尺寸（Analyze dimensions）</strong></li>
+</ul>
+<p>如果不关闭，Komga 为了计算 MD5 或读取分辨率，会把新添加的漫画从头到尾完整下载一遍。关闭后，实测扫描几十本新书只需要不到一分钟。</p>
+<h3 id="第五步日常维护与兜底方案">第五步：日常维护与兜底方案</h3>
+<p>为了系统长期稳定运行，还需要做几项收尾工作。</p>
+<p><strong>1. 添加 Swap 内存</strong>
+一台 2G 内存的小机器跑 Java 应用极易 OOM（内存溢出）。添加一个 2G 的 Swap 可以有效兜底：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">fallocate</span><span style="color:#79B8FF"> -l</span><span style="color:#9ECBFF"> 2G</span><span style="color:#9ECBFF"> /swapfile</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">chmod</span><span style="color:#79B8FF"> 600</span><span style="color:#9ECBFF"> /swapfile</span></span>
+<span class="line"><span style="color:#B392F0">mkswap</span><span style="color:#9ECBFF"> /swapfile</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">swapon</span><span style="color:#9ECBFF"> /swapfile</span></span>
+<span class="line"><span style="color:#79B8FF">echo</span><span style="color:#9ECBFF"> '/swapfile none swap sw 0 0'</span><span style="color:#F97583"> >></span><span style="color:#9ECBFF"> /etc/fstab</span></span></code></pre>
+<p><strong>2. 限制 Docker 日志大小</strong>
+Docker 默认的日志驱动没有大小限制，久而久之会吃光磁盘。
+修改 <code>/etc/docker/daemon.json</code>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "log-driver"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"json-file"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "log-opts"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"max-size"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10m"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"max-file"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>运行 <code>systemctl reload docker</code> 生效。</p>
+<p><strong>3. 数据库定时备份</strong>
+漫画可以重下，但 <code>database.sqlite</code> 里的阅读进度和元数据丢了就找不回来了。
+我写了一个脚本 <code>/usr/local/bin/komga-backup.sh</code>，将其配合 systemd timer 每天凌晨执行：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"><span style="color:#79B8FF">set</span><span style="color:#79B8FF"> -euo</span><span style="color:#9ECBFF"> pipefail</span></span>
+<span class="line"><span style="color:#E1E4E8">BACKUP_DIR</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">/root/backup</span></span>
+<span class="line"><span style="color:#E1E4E8">RCLONE_CONF</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">/root/.config/rclone/rclone.conf</span></span>
+<span class="line"><span style="color:#E1E4E8">STAMP</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">$(</span><span style="color:#B392F0">date</span><span style="color:#9ECBFF"> +%F</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">ARCHIVE</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">$BACKUP_DIR</span><span style="color:#9ECBFF">/komga-config-</span><span style="color:#E1E4E8">$STAMP</span><span style="color:#9ECBFF">.tar.gz"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$BACKUP_DIR</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> stop</span><span style="color:#9ECBFF"> komga</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF">/dev/null</span></span>
+<span class="line"><span style="color:#B392F0">tar</span><span style="color:#9ECBFF"> czf</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$ARCHIVE</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF"> -C</span><span style="color:#9ECBFF"> /root/komga</span><span style="color:#9ECBFF"> config</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> komga</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF">/dev/null</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">rclone</span><span style="color:#9ECBFF"> copy</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$ARCHIVE</span><span style="color:#9ECBFF">"</span><span style="color:#9ECBFF"> gdrive:_komga_backup/</span><span style="color:#79B8FF"> --config</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$RCLONE_CONF</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#B392F0">find</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$BACKUP_DIR</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF"> -name</span><span style="color:#9ECBFF"> 'komga-config-*.tar.gz'</span><span style="color:#79B8FF"> -mtime</span><span style="color:#9ECBFF"> +7</span><span style="color:#79B8FF"> -delete</span></span></code></pre>
+<hr>
+<h2 id="踩坑记录数据库计数的幽灵错乱">踩坑记录：数据库计数的幽灵错乱</h2>
+<p>在这里特别记录一个我遇到的典型故障。</p>
+<p>之前因为没有设置 <code>stop_grace_period</code>，容器在扫描进行到一半时被 <code>SIGKILL</code> 强制杀掉。结果导致 Komga 界面里部分系列显示「书籍总数为 0」，但点进去又能正常看书。</p>
+<p>这是因为 Komga 在 <code>SERIES</code> 表里缓存了一个 <code>BOOK_COUNT</code> 列。扫描被强杀导致真实的 <code>BOOK</code> 表记录存下了，但 <code>SERIES</code> 表的计数没有更新。</p>
+<p>遇到这种情况，<strong>千万不要点击重新扫描全库</strong>，那会在 VFS 上产生巨大的流量开销。我写了一小段 Python 脚本，直接用 SQL 重算并修复缓存列，零下载、零等待：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"><span style="color:#6A737D"># 检查并修复 Komga 的 BOOK_COUNT 缓存列</span></span>
+<span class="line"><span style="color:#79B8FF">set</span><span style="color:#79B8FF"> -euo</span><span style="color:#9ECBFF"> pipefail</span></span>
+<span class="line"><span style="color:#E1E4E8">DB</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">/root/komga/config/database.sqlite</span></span>
+<span class="line"><span style="color:#E1E4E8">FIX</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">0</span></span>
+<span class="line"><span style="color:#E1E4E8">[[ </span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">${1</span><span style="color:#F97583">:-</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "--fix"</span><span style="color:#E1E4E8"> ]] &#x26;&#x26; FIX</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">stale</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">$(</span><span style="color:#B392F0">python3</span><span style="color:#9ECBFF"> -</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$DB</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> &#x3C;&#x3C;</span><span style="color:#9ECBFF">'PY'</span></span>
+<span class="line"><span style="color:#9ECBFF">import sqlite3, sys</span></span>
+<span class="line"><span style="color:#9ECBFF">con = sqlite3.connect(f"file:{sys.argv[1]}?mode=ro", uri=True)</span></span>
+<span class="line"><span style="color:#9ECBFF">rows = con.execute("""SELECT s.NAME, s.BOOK_COUNT, COUNT(b.ID)</span></span>
+<span class="line"><span style="color:#9ECBFF">                      FROM SERIES s</span></span>
+<span class="line"><span style="color:#9ECBFF">                      LEFT JOIN BOOK b ON b.SERIES_ID = s.ID AND b.DELETED_DATE IS NULL</span></span>
+<span class="line"><span style="color:#9ECBFF">                      WHERE s.DELETED_DATE IS NULL GROUP BY s.ID""").fetchall()</span></span>
+<span class="line"><span style="color:#9ECBFF">bad = sum(1 for _, cached, real in rows if cached != real)</span></span>
+<span class="line"><span style="color:#9ECBFF">print(bad)</span></span>
+<span class="line"><span style="color:#9ECBFF">PY</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">[[ </span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">$stale</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> -eq</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8"> ]] &#x26;&#x26; { </span><span style="color:#79B8FF">echo</span><span style="color:#9ECBFF"> "数据库计数一致"</span><span style="color:#E1E4E8">; </span><span style="color:#79B8FF">exit</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#E1E4E8">[[ </span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">$FIX</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> -eq</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8"> ]] &#x26;&#x26; { </span><span style="color:#79B8FF">echo</span><span style="color:#9ECBFF"> "发现 </span><span style="color:#E1E4E8">$stale</span><span style="color:#9ECBFF"> 个系列计数错误，请带上 --fix 参数运行以修复"</span><span style="color:#E1E4E8">; </span><span style="color:#79B8FF">exit</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> stop</span><span style="color:#9ECBFF"> komga</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF">/dev/null</span></span>
+<span class="line"><span style="color:#B392F0">python3</span><span style="color:#9ECBFF"> -</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$DB</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> &#x3C;&#x3C;</span><span style="color:#9ECBFF">'PY'</span></span>
+<span class="line"><span style="color:#9ECBFF">import sqlite3, sys</span></span>
+<span class="line"><span style="color:#9ECBFF">con = sqlite3.connect(sys.argv[1])</span></span>
+<span class="line"><span style="color:#9ECBFF">con.execute("""UPDATE SERIES SET BOOK_COUNT = (</span></span>
+<span class="line"><span style="color:#9ECBFF">                 SELECT COUNT(*) FROM BOOK</span></span>
+<span class="line"><span style="color:#9ECBFF">                 WHERE BOOK.SERIES_ID = SERIES.ID AND BOOK.DELETED_DATE IS NULL)""")</span></span>
+<span class="line"><span style="color:#9ECBFF">con.commit()</span></span>
+<span class="line"><span style="color:#9ECBFF">PY</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> komga</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF">/dev/null</span></span></code></pre>
+<h2 id="最后">最后</h2>
+<p>这套系统部署完毕后，体验非常优秀。在一台廉价的 VPS 上，我获得了一个容量上不封顶的私人漫画库，日常的按需加载几乎感受不到延迟。</p>
+<p>但这中间的折腾也让我深刻意识到：<strong>基于网络的虚拟文件系统，和真正的本地硬盘在行为逻辑上是完全不同的。</strong> 在本地无感的操作（算哈希、读元数据），在网络上都是高昂的全量下载；在本地随意终止的进程，在网络 I/O 的延迟下可能直接导致数据库写入断裂。</p>
+<p>希望这篇记录能帮你避开这些隐蔽的陷阱，顺利搭建起属于自己的漫画库。</p>  </div> <div class="flex justify-end mt-16 gap-4 flex-wrap italic"> <p class="opacity-70"> <span data-lang="zh">最后修改</span> <span data-lang="en">Last modified</span>:
+<span data-lang="zh"> 2026年7月25日 </span> <span data-lang="en">25 Jul 2026</span> </p> </div> </div> </div> </article> </main>  <footer class="font-medium"> <div class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/30 dark:border-foreground-dark/30"> <div> <a href="/home" class="block w-fit" aria-label="首页 / Home"> <svg width="36" height="36" viewBox="0 0 1080 1080" fill="none">
+<path d="M520.357 384.929C517.5 356.119 505.238 333.738 483.571 317.786C461.905 301.833 432.5 293.857 395.357 293.857C370.119 293.857 348.81 297.429 331.429 304.571C314.048 311.476 300.714 321.119 291.429 333.5C282.381 345.881 277.857 359.929 277.857 375.643C277.381 388.738 280.119 400.167 286.071 409.929C292.262 419.69 300.714 428.143 311.429 435.286C322.143 442.19 334.524 448.262 348.571 453.5C362.619 458.5 377.619 462.786 393.571 466.357L459.286 482.071C491.19 489.214 520.476 498.738 547.143 510.643C573.81 522.548 596.905 537.19 616.429 554.571C635.952 571.952 651.071 592.429 661.786 616C672.738 639.571 678.333 666.595 678.571 697.071C678.333 741.833 666.905 780.643 644.286 813.5C621.905 846.119 589.524 871.476 547.143 889.571C505 907.429 454.167 916.357 394.643 916.357C335.595 916.357 284.167 907.31 240.357 889.214C196.786 871.119 162.738 844.333 138.214 808.857C113.929 773.143 101.19 728.976 100 676.357H249.643C251.31 700.881 258.333 721.357 270.714 737.786C283.333 753.976 300.119 766.238 321.071 774.571C342.262 782.667 366.19 786.714 392.857 786.714C419.048 786.714 441.786 782.905 461.071 775.286C480.595 767.667 495.714 757.071 506.429 743.5C517.143 729.929 522.5 714.333 522.5 696.714C522.5 680.286 517.619 666.476 507.857 655.286C498.333 644.095 484.286 634.571 465.714 626.714C447.381 618.857 424.881 611.714 398.214 605.286L318.571 585.286C256.905 570.286 208.214 546.833 172.5 514.929C136.786 483.024 119.048 440.048 119.286 386C119.048 341.714 130.833 303.024 154.643 269.929C178.69 236.833 211.667 211 253.571 192.429C295.476 173.857 343.095 164.571 396.429 164.571C450.714 164.571 498.095 173.857 538.571 192.429C579.286 211 610.952 236.833 633.571 269.929C656.19 303.024 667.857 341.357 668.571 384.929H520.357ZM868.661 915.286C845.089 915.286 824.851 906.952 807.946 890.286C791.28 873.381 782.946 853.143 782.946 829.571C782.946 806.238 791.28 786.238 807.946 769.571C824.851 752.905 845.089 744.571 868.661 744.571C891.518 744.571 911.518 752.905 928.661 769.571C945.804 786.238 954.375 806.238 954.375 829.571C954.375 845.286 950.327 859.69 942.232 872.786C934.375 885.643 924.018 896 911.161 903.857C898.304 911.476 884.137 915.286 868.661 915.286Z" fill="currentColor" />
+</svg> </a> </div> <div> <h3 class="font-bold text-2xl"> <span data-lang="zh">站点导航</span> <span data-lang="en">Site Links</span> </h3> <div class="flex flex-wrap gap-4 mt-4"> <a class="text-lg hover:text-primary transition-colors" href="/blog" target="_self" rel="noopener noreferrer"> <span data-lang="zh">文章</span> <span data-lang="en">Blog</span> </a><a class="text-lg hover:text-primary transition-colors" href="/archive" target="_self" rel="noopener noreferrer"> <span data-lang="zh">归档</span> <span data-lang="en">Archive</span> </a><a class="text-lg hover:text-primary transition-colors" href="/about" target="_self" rel="noopener noreferrer"> <span data-lang="zh">关于</span> <span data-lang="en">About</span> </a><a class="text-lg hover:text-primary transition-colors" href="/moments" target="_self" rel="noopener noreferrer"> <span data-lang="zh">动态</span> <span data-lang="en">Moments</span> </a><a class="text-lg hover:text-primary transition-colors" href="/friends" target="_self" rel="noopener noreferrer"> <span data-lang="zh">友邻</span> <span data-lang="en">Friends</span> </a> <a href="/rss.xml" target="_blank" rel="noopener noreferrer" class="text-lg" aria-label="RSS 订阅 / RSS Feed"> <svg width="1em" height="1em" class="w-6 h-6" data-icon="mdi:rss">   <symbol id="ai:mdi:rss" viewBox="0 0 24 24"><path fill="currentColor" d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></symbol><use href="#ai:mdi:rss"></use>  </svg> </a> </div> </div> <div> <h3 class="font-bold text-2xl"> <span data-lang="zh">社交链接</span> <span data-lang="en">Socials</span> </h3> <div class="flex flex-wrap gap-4 mt-4"> <a class="text-lg hover:text-primary transition-colors" href="https://github.com/aronnaxlin" target="_blank" rel="noopener noreferrer"> GitHub </a><a class="text-lg hover:text-primary transition-colors" href="https://aronnax.site" target="_blank" rel="noopener noreferrer"> Blog </a><a class="text-lg hover:text-primary transition-colors" href="mailto:me@aronnax.site" target="_blank" rel="noopener noreferrer"> Email </a><a class="text-lg hover:text-primary transition-colors" href="https://space.bilibili.com/386410153" target="_blank" rel="noopener noreferrer"> Bilibili </a> </div> </div> </div> <div class="app-container pb-12 text-sm opacity-70 hover:opacity-100 transition-opacity"> <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-foreground/10 pt-8"> <p>
+&copy; 2026 <span data-lang="zh">
+本站由 Astro 驱动，主题改自 <a class="underline font-bold" href="https://github.com/yashjawale/saral-theme-astro" target="_blank">yashjawale/saral-theme-astro</a> </span> <span data-lang="en">
+Powered by Astro. Theme adapted from <a class="underline font-bold" href="https://github.com/yashjawale/saral-theme-astro" target="_blank">yashjawale/saral-theme-astro</a> </span> </p> </div> </div> </footer> <script>
+			function applySiteLanguage(nextLanguage) {
+				const language = nextLanguage === 'en' ? 'en' : 'zh'
+				document.documentElement.dataset.siteLang = language
+				localStorage.setItem('site-language', language)
+
+				document.querySelectorAll('[data-language-toggle-label]').forEach((el) => {
+					el.textContent = language === 'zh' ? 'EN' : '中'
+				})
+			}
+
+			window.addEventListener('DOMContentLoaded', () => {
+				applySiteLanguage(document.documentElement.dataset.siteLang)
+
+				document.querySelectorAll('[data-language-toggle]').forEach((button) => {
+					button.addEventListener('click', () => {
+						const currentLanguage =
+							document.documentElement.dataset.siteLang === 'en' ? 'en' : 'zh'
+						applySiteLanguage(currentLanguage === 'zh' ? 'en' : 'zh')
+					})
+				})
+			})
+		</script> </body> </html> 

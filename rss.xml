@@ -1,4 +1,218 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Aronnax&apos;s Blog</title><description>Software Engineering &amp; AI | Learning | ACG Aesthetics</description><link>https://aronnax.site/</link><item><title>AI 时代的开发工具碎碎念</title><link>https://aronnax.site/blog/ai-era-dev-tools/</link><guid isPermaLink="true">https://aronnax.site/blog/ai-era-dev-tools/</guid><description>记录一下我这个计算机本科生在 AI 时代日常使用的各种 Agent、编辑器和辅助工具。</description><pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;AI 时代的来临对我这个计算机专业本科生冲击很大，现在做的大部分内容已经进化到了纯 Vibe 不 Coding 的状态。比起语言、框架，开发工具的选择反倒成了很潮很酷、且能讲出点东西的领域；得益于 Agent 的自主驱动，这些工具也变得日新月异起来。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Aronnax&apos;s Blog</title><description>Software Engineering &amp; AI | Learning | ACG Aesthetics</description><link>https://aronnax.site/</link><item><title>用 Komga + Google Drive 打造一套「近乎无限存储」的私有漫画库</title><link>https://aronnax.site/blog/komga-google-drive-blog/</link><guid isPermaLink="true">https://aronnax.site/blog/komga-google-drive-blog/</guid><description>记录如何在一台小容量 VPS 上，通过 rclone 挂载 Google Drive 并部署 Komga，实现容量上不封顶的私人漫画库，以及在此过程中踩过的各种坑。</description><pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;本文由 Claude Sonnet 5 根据真实部署经历攥写；Gemini 3.1 Pro 润色&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;事情的起因是我手头有一台只剩 20G 硬盘的闲置 VPS。我想用它搭个能长期攒漫画的私人阅读库。&lt;/p&gt;
+&lt;p&gt;传统思路是「本地下载好，再定时同步到网盘」。但对于 20G 的小盘来说，稍微多攒几套漫画就满了，更别提还要天天操心同步冲突和冗余占用的问题。&lt;/p&gt;
+&lt;p&gt;这篇文章记录的是另一条路：&lt;strong&gt;把 Google Drive 直接「假装」成本地硬盘挂载给服务器，VPS 只负责跑应用和做短期缓存。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;核心工具链很简单：&lt;code&gt;Komga&lt;/code&gt; 作为阅读服务端，&lt;code&gt;rclone&lt;/code&gt; 提供 VFS（虚拟文件系统）挂载，&lt;code&gt;Google Drive&lt;/code&gt; 充当无限后备存储。外围再套上 &lt;code&gt;Docker Compose&lt;/code&gt; 和 &lt;code&gt;Cloudflare Tunnel&lt;/code&gt; 解决部署和公网访问。&lt;/p&gt;
+&lt;p&gt;这套架构听起来特别优雅，跑通之后也确实很好用。但从理论可行到日常稳定，我经历了存储占满、数据库计数错乱、OAuth 授权莫名失效等一系列真实故障。这篇文章把方案、踩过的坑和最终配置都记录下来，希望能帮同样想折腾的小白少走几步弯路。&lt;/p&gt;
+&lt;h2&gt;为什么选择 Komga？&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://komga.org/&quot;&gt;Komga&lt;/a&gt; 是一个开源的漫画/电子书服务端。它不仅有网页端，能通过 OPDS 接入移动端的阅读 App（比如 Panels、Mihon），还支持元数据刮削。&lt;/p&gt;
+&lt;p&gt;最契合这个项目的一点是，它是&lt;strong&gt;无状态&lt;/strong&gt;的。书籍文件存放在哪里、怎么组织，Komga 并不在乎。它只负责扫描文件、建立索引、提取缩略图，然后把这些信息存进自己独立的 SQLite 数据库里。&lt;/p&gt;
+&lt;p&gt;正是这种「文件与索引完全解耦」的设计，让我们可以放心大胆地把它架在 FUSE 网盘挂载这种伴随网络延迟的文件系统上。&lt;/p&gt;
+&lt;h2&gt;架构总览&lt;/h2&gt;
+&lt;p&gt;不废话，先看整体的数据流向：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
+│ 你的手机/平板 │ ───▶ │ Cloudflare Tunnel │ ───▶ │     NPM      │
+└─────────────┘      │ (内网穿透，无需公网)│      │ (反向代理)    │
+                      └──────────────────┘      └──────┬──────┘
+                                                         │ 仅限内网通信
+                                                         ▼
+                                                  ┌─────────────┐
+                                                  │    Komga     │
+                                                  │  (只读挂载)   │
+                                                  └──────┬──────┘
+                                                         │ /manga (只读)
+                                                         ▼
+                                                  ┌─────────────┐
+                                                  │ rclone mount │
+                                                  │  (VFS 缓存)   │
+                                                  └──────┬──────┘
+                                                         │ FUSE
+                                        本地磁盘 ◀────────┼────────▶ Google Drive
+                                       (短期缓存)                    (永久存储)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这个架构下，VPS 永远只缓冲你最近在看的那一小部分数据。漫画下载进去后，rclone 会先将其缓存在本地，后台异步上传到 Drive；阅读时，如果在缓存里就直接读取，不在就实时向 Drive 发起分片下载。磁盘占用和总藏书量完全解耦。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;详细配置指南&lt;/h2&gt;
+&lt;p&gt;为了让小白也能上手，以下是完整的配置流程和排坑说明。&lt;/p&gt;
+&lt;h3&gt;第一步：配置 Google Cloud 项目与 OAuth&lt;/h3&gt;
+&lt;p&gt;很多教程会让你直接用 rclone 默认的配置连接网盘，建议不要这么做。默认配置是所有人共享同一个额度，高峰期极易被限流。自己建一个凭证，每天 750GB 的上传额度完全独享。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;登录 &lt;a href=&quot;https://console.cloud.google.com/&quot;&gt;Google Cloud Console&lt;/a&gt;，新建一个项目。&lt;/li&gt;
+&lt;li&gt;在「APIs &amp;amp; Services -&amp;gt; Library」中搜索 &lt;strong&gt;Google Drive API&lt;/strong&gt; 并启用。&lt;/li&gt;
+&lt;li&gt;在「APIs &amp;amp; Services -&amp;gt; Credentials」中创建一个 &lt;strong&gt;OAuth 客户端 ID&lt;/strong&gt;，应用类型选择 &lt;strong&gt;Desktop app&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成后，你会拿到 &lt;code&gt;client_id&lt;/code&gt; 和 &lt;code&gt;client_secret&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关键避坑：发布状态（Publishing status）&lt;/strong&gt;
+刚建好的 OAuth 应用默认是「测试中 (Testing)」状态。这里有两个致命限制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只有手动加入「测试用户名单」的账号才能授权，否则会报 403 错误。&lt;/li&gt;
+&lt;li&gt;Token 生命周期受限，可能七天后半夜悄悄失效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;解决方法很简单：在同一个页面，点击 &lt;strong&gt;「发布应用 / Publish App」&lt;/strong&gt;，将其切换为 &lt;strong&gt;「生产中 / In production」&lt;/strong&gt;。因为这是个人使用，不用担心 Google 的审核流程。授权时浏览器会弹出「未验证应用」的警告，点击高级继续即可。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;沙盒隔离&lt;/strong&gt;
+为了安全，可以在 rclone 配置里加上 &lt;code&gt;root_folder_id&lt;/code&gt;，将 rclone 的权限锁定在 Drive 的一个特定文件夹内：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;[gdrive]
+type = drive
+client_id = 你的_client_id
+client_secret = 你的_client_secret
+scope = drive
+root_folder_id = 你的漫画文件夹ID (从网页端 URL 获取)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;第二步：配置 rclone 挂载与 Systemd 守护&lt;/h3&gt;
+&lt;p&gt;首先在本地电脑（需要浏览器）执行授权命令，拿到 Token JSON，并填入服务器的 &lt;code&gt;rclone.conf&lt;/code&gt; 中：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;rclone authorize &amp;quot;drive&amp;quot; &amp;quot;你的_client_id&amp;quot; &amp;quot;你的_client_secret&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接着，在服务器上配置 systemd 服务来管理挂载。网络波动后，systemd 能自动帮你恢复挂载。&lt;/p&gt;
+&lt;p&gt;创建文件 &lt;code&gt;/etc/systemd/system/komga-rclone.service&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;[Unit]
+Description=Rclone Mount for Komga
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount gdrive: /root/komga/manga \
+  --config /root/.config/rclone/rclone.conf \
+  --cache-dir /var/cache/rclone \
+  --vfs-cache-mode full \
+  --vfs-cache-max-size 4G \
+  --vfs-cache-min-free-space 3G \
+  --dir-cache-time 168h \
+  --drive-stop-on-upload-limit \
+  --allow-other \
+  --rc --rc-addr=127.0.0.1:5572 --rc-no-auth
+ExecStartPost=/usr/bin/docker restart -t 120 komga
+ExecStop=/bin/fusermount -uz /root/komga/manga
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;配置解析：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Type=notify&lt;/code&gt; 与 &lt;code&gt;ExecStartPost&lt;/code&gt;：确保 rclone 完全挂载就绪后，再重启 Komga 容器。否则 Komga 扫到一个空目录，会把所有藏书标记为「已删除」。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--cache-dir /var/cache/rclone&lt;/code&gt;：千万别用默认的 &lt;code&gt;/tmp&lt;/code&gt;。Ubuntu 的定时任务每天会清理 &lt;code&gt;/tmp&lt;/code&gt;，如果正在排队上传的缓存文件被系统删了，数据会直接丢失。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--vfs-cache-mode full&lt;/code&gt;：必须开启全缓存，否则每次翻页都会重新向 Drive 发起请求。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--vfs-cache-min-free-space 3G&lt;/code&gt;：真正的磁盘防爆护栏。下载速度过快时，软限制 &lt;code&gt;max-size&lt;/code&gt; 拦不住，这个参数能在磁盘剩余 3G 时强行切断写入。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--rc&lt;/code&gt;：开启本地控制接口。排查问题时，通过这个接口查询状态，绝不能再起一个独立的 rclone 进程去读配置文件，否则极易触发 Google 的并发风控导致 Token 被封。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;启动并设置开机自启：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;systemctl daemon-reload
+systemctl enable --now komga-rclone
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;第三步：使用 Docker 部署 Komga&lt;/h3&gt;
+&lt;p&gt;创建 &lt;code&gt;/root/komga/docker-compose.yml&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;services:
+  komga:
+    image: gotson/komga:latest
+    container_name: komga
+    volumes:
+      - ./config:/config
+      - ./manga:/manga:ro,shared
+    ports:
+      - &amp;quot;127.0.0.1:25600:25600&amp;quot;
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx512m
+      - TZ=Asia/Taipei
+    mem_limit: 1g
+    stop_grace_period: 120s
+    restart: unless-stopped
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;关键配置说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/manga:ro,shared&lt;/code&gt;：&lt;code&gt;ro&lt;/code&gt; 表示只读。Komga 不需要修改源文件，防止它随手改个文件导致 rclone 把整本漫画重新上传，白白浪费流量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;127.0.0.1:25600&lt;/code&gt;：只监听本地。外部访问统一通过反向代理（如 Nginx Proxy Manager）接入。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stop_grace_period: 120s&lt;/code&gt;：给足优雅退出的时间。Docker 默认关机只等 10 秒，如果 Komga 正在扫描数据库时被强制 &lt;code&gt;SIGKILL&lt;/code&gt; 杀死，会导致数据库记录错乱。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在同一目录下运行 &lt;code&gt;docker compose up -d&lt;/code&gt; 即可启动。&lt;/p&gt;
+&lt;h3&gt;第四步：给 Komga 的扫描踩刹车&lt;/h3&gt;
+&lt;p&gt;在本地硬盘上，Komga 的默认设置没什么问题。但在网络挂载环境下，必须进入 Komga 的「设置 -&amp;gt; 编辑库 -&amp;gt; 分析」中，&lt;strong&gt;关闭以下两个选项&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;计算文件的哈希值（File hashing）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分析页面尺寸（Analyze dimensions）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果不关闭，Komga 为了计算 MD5 或读取分辨率，会把新添加的漫画从头到尾完整下载一遍。关闭后，实测扫描几十本新书只需要不到一分钟。&lt;/p&gt;
+&lt;h3&gt;第五步：日常维护与兜底方案&lt;/h3&gt;
+&lt;p&gt;为了系统长期稳定运行，还需要做几项收尾工作。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 添加 Swap 内存&lt;/strong&gt;
+一台 2G 内存的小机器跑 Java 应用极易 OOM（内存溢出）。添加一个 2G 的 Swap 可以有效兜底：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;fallocate -l 2G /swapfile &amp;amp;&amp;amp; chmod 600 /swapfile
+mkswap /swapfile &amp;amp;&amp;amp; swapon /swapfile
+echo &amp;#39;/swapfile none swap sw 0 0&amp;#39; &amp;gt;&amp;gt; /etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. 限制 Docker 日志大小&lt;/strong&gt;
+Docker 默认的日志驱动没有大小限制，久而久之会吃光磁盘。
+修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &amp;quot;log-driver&amp;quot;: &amp;quot;json-file&amp;quot;,
+  &amp;quot;log-opts&amp;quot;: { &amp;quot;max-size&amp;quot;: &amp;quot;10m&amp;quot;, &amp;quot;max-file&amp;quot;: &amp;quot;3&amp;quot; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行 &lt;code&gt;systemctl reload docker&lt;/code&gt; 生效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 数据库定时备份&lt;/strong&gt;
+漫画可以重下，但 &lt;code&gt;database.sqlite&lt;/code&gt; 里的阅读进度和元数据丢了就找不回来了。
+我写了一个脚本 &lt;code&gt;/usr/local/bin/komga-backup.sh&lt;/code&gt;，将其配合 systemd timer 每天凌晨执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/bash
+set -euo pipefail
+BACKUP_DIR=/root/backup
+RCLONE_CONF=/root/.config/rclone/rclone.conf
+STAMP=$(date +%F)
+ARCHIVE=&amp;quot;$BACKUP_DIR/komga-config-$STAMP.tar.gz&amp;quot;
+
+mkdir -p &amp;quot;$BACKUP_DIR&amp;quot;
+docker stop komga &amp;gt;/dev/null
+tar czf &amp;quot;$ARCHIVE&amp;quot; -C /root/komga config
+docker start komga &amp;gt;/dev/null
+
+rclone copy &amp;quot;$ARCHIVE&amp;quot; gdrive:_komga_backup/ --config &amp;quot;$RCLONE_CONF&amp;quot;
+find &amp;quot;$BACKUP_DIR&amp;quot; -name &amp;#39;komga-config-*.tar.gz&amp;#39; -mtime +7 -delete
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2&gt;踩坑记录：数据库计数的幽灵错乱&lt;/h2&gt;
+&lt;p&gt;在这里特别记录一个我遇到的典型故障。&lt;/p&gt;
+&lt;p&gt;之前因为没有设置 &lt;code&gt;stop_grace_period&lt;/code&gt;，容器在扫描进行到一半时被 &lt;code&gt;SIGKILL&lt;/code&gt; 强制杀掉。结果导致 Komga 界面里部分系列显示「书籍总数为 0」，但点进去又能正常看书。&lt;/p&gt;
+&lt;p&gt;这是因为 Komga 在 &lt;code&gt;SERIES&lt;/code&gt; 表里缓存了一个 &lt;code&gt;BOOK_COUNT&lt;/code&gt; 列。扫描被强杀导致真实的 &lt;code&gt;BOOK&lt;/code&gt; 表记录存下了，但 &lt;code&gt;SERIES&lt;/code&gt; 表的计数没有更新。&lt;/p&gt;
+&lt;p&gt;遇到这种情况，&lt;strong&gt;千万不要点击重新扫描全库&lt;/strong&gt;，那会在 VFS 上产生巨大的流量开销。我写了一小段 Python 脚本，直接用 SQL 重算并修复缓存列，零下载、零等待：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/bash
+# 检查并修复 Komga 的 BOOK_COUNT 缓存列
+set -euo pipefail
+DB=/root/komga/config/database.sqlite
+FIX=0
+[[ &amp;quot;${1:-}&amp;quot; == &amp;quot;--fix&amp;quot; ]] &amp;amp;&amp;amp; FIX=1
+
+stale=$(python3 - &amp;quot;$DB&amp;quot; &amp;lt;&amp;lt;&amp;#39;PY&amp;#39;
+import sqlite3, sys
+con = sqlite3.connect(f&amp;quot;file:{sys.argv[1]}?mode=ro&amp;quot;, uri=True)
+rows = con.execute(&amp;quot;&amp;quot;&amp;quot;SELECT s.NAME, s.BOOK_COUNT, COUNT(b.ID)
+                      FROM SERIES s
+                      LEFT JOIN BOOK b ON b.SERIES_ID = s.ID AND b.DELETED_DATE IS NULL
+                      WHERE s.DELETED_DATE IS NULL GROUP BY s.ID&amp;quot;&amp;quot;&amp;quot;).fetchall()
+bad = sum(1 for _, cached, real in rows if cached != real)
+print(bad)
+PY
+)
+[[ &amp;quot;$stale&amp;quot; -eq 0 ]] &amp;amp;&amp;amp; { echo &amp;quot;数据库计数一致&amp;quot;; exit 0; }
+[[ &amp;quot;$FIX&amp;quot; -eq 0 ]] &amp;amp;&amp;amp; { echo &amp;quot;发现 $stale 个系列计数错误，请带上 --fix 参数运行以修复&amp;quot;; exit 1; }
+
+docker stop komga &amp;gt;/dev/null
+python3 - &amp;quot;$DB&amp;quot; &amp;lt;&amp;lt;&amp;#39;PY&amp;#39;
+import sqlite3, sys
+con = sqlite3.connect(sys.argv[1])
+con.execute(&amp;quot;&amp;quot;&amp;quot;UPDATE SERIES SET BOOK_COUNT = (
+                 SELECT COUNT(*) FROM BOOK
+                 WHERE BOOK.SERIES_ID = SERIES.ID AND BOOK.DELETED_DATE IS NULL)&amp;quot;&amp;quot;&amp;quot;)
+con.commit()
+PY
+docker start komga &amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;最后&lt;/h2&gt;
+&lt;p&gt;这套系统部署完毕后，体验非常优秀。在一台廉价的 VPS 上，我获得了一个容量上不封顶的私人漫画库，日常的按需加载几乎感受不到延迟。&lt;/p&gt;
+&lt;p&gt;但这中间的折腾也让我深刻意识到：&lt;strong&gt;基于网络的虚拟文件系统，和真正的本地硬盘在行为逻辑上是完全不同的。&lt;/strong&gt; 在本地无感的操作（算哈希、读元数据），在网络上都是高昂的全量下载；在本地随意终止的进程，在网络 I/O 的延迟下可能直接导致数据库写入断裂。&lt;/p&gt;
+&lt;p&gt;希望这篇记录能帮你避开这些隐蔽的陷阱，顺利搭建起属于自己的漫画库。&lt;/p&gt;
+</content:encoded></item><item><title>AI 时代的开发工具碎碎念</title><link>https://aronnax.site/blog/ai-era-dev-tools/</link><guid isPermaLink="true">https://aronnax.site/blog/ai-era-dev-tools/</guid><description>记录一下我这个计算机本科生在 AI 时代日常使用的各种 Agent、编辑器和辅助工具。</description><pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;AI 时代的来临对我这个计算机专业本科生冲击很大，现在做的大部分内容已经进化到了纯 Vibe 不 Coding 的状态。比起语言、框架，开发工具的选择反倒成了很潮很酷、且能讲出点东西的领域；得益于 Agent 的自主驱动，这些工具也变得日新月异起来。&lt;/p&gt;
 &lt;p&gt;闲来无事分享一下我日常生活中用到的形形色色的工具。此帖仅记录我在今时今日的选择，可能在下一周就会有新的变化，当作个人的碎碎念即可。&lt;/p&gt;
 &lt;h2&gt;写代码用的 Agent&lt;/h2&gt;
 &lt;p&gt;下面列出了很多工具，这些工具我都浅尝辄止过，目前自己在用的是 Claude Code + Codex 的组合。&lt;/p&gt;

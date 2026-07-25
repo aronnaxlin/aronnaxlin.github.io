@@ -12,26 +12,7 @@
 &lt;p&gt;正是这种「文件与索引完全解耦」的设计，让我们可以放心大胆地把它架在 FUSE 网盘挂载这种伴随网络延迟的文件系统上。&lt;/p&gt;
 &lt;h2&gt;架构总览&lt;/h2&gt;
 &lt;p&gt;不废话，先看整体的数据流向：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
-│ 你的手机/平板 │ ───▶ │ Cloudflare Tunnel │ ───▶ │     NPM      │
-└─────────────┘      │ (内网穿透，无需公网)│      │ (反向代理)    │
-                      └──────────────────┘      └──────┬──────┘
-                                                         │ 仅限内网通信
-                                                         ▼
-                                                  ┌─────────────┐
-                                                  │    Komga     │
-                                                  │  (只读挂载)   │
-                                                  └──────┬──────┘
-                                                         │ /manga (只读)
-                                                         ▼
-                                                  ┌─────────────┐
-                                                  │ rclone mount │
-                                                  │  (VFS 缓存)   │
-                                                  └──────┬──────┘
-                                                         │ FUSE
-                                        本地磁盘 ◀────────┼────────▶ Google Drive
-                                       (短期缓存)                    (永久存储)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/blogimages/komga-google-drive/architecture.png&quot; alt=&quot;架构总览&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在这个架构下，VPS 永远只缓冲你最近在看的那一小部分数据。漫画下载进去后，rclone 会先将其缓存在本地，后台异步上传到 Drive；阅读时，如果在缓存里就直接读取，不在就实时向 Drive 发起分片下载。磁盘占用和总藏书量完全解耦。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2&gt;详细配置指南&lt;/h2&gt;

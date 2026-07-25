@@ -115,25 +115,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <p>正是这种「文件与索引完全解耦」的设计，让我们可以放心大胆地把它架在 FUSE 网盘挂载这种伴随网络延迟的文件系统上。</p>
 <h2 id="架构总览">架构总览</h2>
 <p>不废话，先看整体的数据流向：</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>┌─────────────┐      ┌──────────────────┐      ┌─────────────┐</span></span>
-<span class="line"><span>│ 你的手机/平板 │ ───▶ │ Cloudflare Tunnel │ ───▶ │     NPM      │</span></span>
-<span class="line"><span>└─────────────┘      │ (内网穿透，无需公网)│      │ (反向代理)    │</span></span>
-<span class="line"><span>                      └──────────────────┘      └──────┬──────┘</span></span>
-<span class="line"><span>                                                         │ 仅限内网通信</span></span>
-<span class="line"><span>                                                         ▼</span></span>
-<span class="line"><span>                                                  ┌─────────────┐</span></span>
-<span class="line"><span>                                                  │    Komga     │</span></span>
-<span class="line"><span>                                                  │  (只读挂载)   │</span></span>
-<span class="line"><span>                                                  └──────┬──────┘</span></span>
-<span class="line"><span>                                                         │ /manga (只读)</span></span>
-<span class="line"><span>                                                         ▼</span></span>
-<span class="line"><span>                                                  ┌─────────────┐</span></span>
-<span class="line"><span>                                                  │ rclone mount │</span></span>
-<span class="line"><span>                                                  │  (VFS 缓存)   │</span></span>
-<span class="line"><span>                                                  └──────┬──────┘</span></span>
-<span class="line"><span>                                                         │ FUSE</span></span>
-<span class="line"><span>                                        本地磁盘 ◀────────┼────────▶ Google Drive</span></span>
-<span class="line"><span>                                       (短期缓存)                    (永久存储)</span></span></code></pre>
+<figure class="rehype-figure-title"><img alt="架构总览" loading="lazy" decoding="async" fetchpriority="auto" width="711" height="465" src="/_astro/architecture.B57FPu8K_ZbeCgC.webp" ></figure>
 <p>在这个架构下，VPS 永远只缓冲你最近在看的那一小部分数据。漫画下载进去后，rclone 会先将其缓存在本地，后台异步上传到 Drive；阅读时，如果在缓存里就直接读取，不在就实时向 Drive 发起分片下载。磁盘占用和总藏书量完全解耦。</p>
 <hr>
 <h2 id="详细配置指南">详细配置指南</h2>

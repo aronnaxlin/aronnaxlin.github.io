@@ -1,6 +1,6 @@
 {
-	"name": "Saral Theme",
-	"short_name": "Saral",
+	"name": "Aronnax's Blog",
+	"short_name": "Aronnax",
 	"icons": [
 		{
 			"src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
 			"purpose": "maskable"
 		}
 	],
-	"theme_color": "#ffffff",
-	"background_color": "#ffffff",
+	"theme_color": "#08080a",
+	"background_color": "#08080a",
 	"display": "standalone"
 }

@@ -152,7 +152,7 @@ systemctl enable --now komga-rclone
       - ./config:/config
       - ./manga:/manga:ro,shared
     ports:
-      - &amp;quot;127.0.0.1:25600:25600&amp;quot;
+      - &amp;#39;127.0.0.1:25600:25600&amp;#39;
     environment:
       - JAVA_TOOL_OPTIONS=-Xmx512m
       - TZ=Asia/Taipei
@@ -186,8 +186,8 @@ echo &amp;#39;/swapfile none swap sw 0 0&amp;#39; &amp;gt;&amp;gt; /etc/fstab
 Docker 默认的日志驱动没有大小限制，久而久之会吃光磁盘。
 修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt;：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &amp;quot;log-driver&amp;quot;: &amp;quot;json-file&amp;quot;,
-  &amp;quot;log-opts&amp;quot;: { &amp;quot;max-size&amp;quot;: &amp;quot;10m&amp;quot;, &amp;quot;max-file&amp;quot;: &amp;quot;3&amp;quot; }
+	&amp;quot;log-driver&amp;quot;: &amp;quot;json-file&amp;quot;,
+	&amp;quot;log-opts&amp;quot;: { &amp;quot;max-size&amp;quot;: &amp;quot;10m&amp;quot;, &amp;quot;max-file&amp;quot;: &amp;quot;3&amp;quot; }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;运行 &lt;code&gt;systemctl reload docker&lt;/code&gt; 生效。&lt;/p&gt;

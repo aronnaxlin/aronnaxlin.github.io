@@ -195,7 +195,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">./config:/config</span></span>
 <span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">./manga:/manga:ro,shared</span></span>
 <span class="line"><span style="color:#85E89D">    ports</span><span style="color:#E1E4E8">:</span></span>
-<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">"127.0.0.1:25600:25600"</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">'127.0.0.1:25600:25600'</span></span>
 <span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">:</span></span>
 <span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">JAVA_TOOL_OPTIONS=-Xmx512m</span></span>
 <span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">TZ=Asia/Taipei</span></span>
@@ -227,8 +227,8 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 Docker 默认的日志驱动没有大小限制，久而久之会吃光磁盘。
 修改 <code>/etc/docker/daemon.json</code>：</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
-<span class="line"><span style="color:#79B8FF">  "log-driver"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"json-file"</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#79B8FF">  "log-opts"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"max-size"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10m"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"max-file"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#79B8FF">	"log-driver"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"json-file"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">	"log-opts"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"max-size"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10m"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"max-file"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8"> }</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <p>运行 <code>systemctl reload docker</code> 生效。</p>
 <p><strong>3. 数据库定时备份</strong>

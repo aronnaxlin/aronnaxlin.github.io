@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Aronnax&apos;s Blog</title><description>Software Engineering &amp; AI | Learning | ACG Aesthetics</description><link>https://aronnax.site/</link><item><title>Does the Three-Episode Rule Really Work?</title><link>https://aronnax.site/blog/three-episode-rule/</link><guid isPermaLink="true">https://aronnax.site/blog/three-episode-rule/</guid><description>An anime folk heuristic, formalised as a multi-armed bandit problem and tested on 4,153 real shows. Bilingual — use the language toggle in the navigation bar.</description><pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;import &amp;#39;katex/dist/katex.min.css&amp;#39;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Aronnax&apos;s Blog</title><description>Software Engineering &amp; AI | Learning | ACG Aesthetics</description><link>https://aronnax.site/</link><item><title>Linux 元年来了吗</title><link>https://aronnax.site/blog/linux-desktop-year/</link><guid isPermaLink="true">https://aronnax.site/blog/linux-desktop-year/</guid><description>DHH 说 2026 年是 Linux 元年。从商业预装、发行版碎片化到 Proton、Agent 与 Omarchy，聊聊桌面 Linux 差在哪一步，以及元年到底是意愿的事还是门槛的事。</description><pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;何同学说，2019 年是 5G 元年；推特博主们说，2025 年是 LLM 元年乃至 AI 元年；DHH 说，2026 年是 Linux 元年。&lt;/p&gt;
+&lt;p&gt;第一个论断是错的，那是何同学元年；第二个论断或许有些道理；但是现在没有人确定第三个是不是对的，因为 2026 年还是现在进行时。&lt;/p&gt;
+&lt;p&gt;作为一个某种意义上的技术爱好者，我还没有参与过庞大的项目，没有开源过里程碑式的作品，最近「民办 XXX」的概念很火，我想我们正是技术达人和普通用户之间的那一层，也就是「民办程序员」，这一层属性或许能让我有足够的底气说我比 DHH 这样的大佬或者啥都不懂的小白更有底气谈这个问题。以下请听我的分析。&lt;/p&gt;
+&lt;h2&gt;Linux 为什么迟迟不普及&lt;/h2&gt;
+&lt;p&gt;首先请允许我纠正一个概念，我们的标题，实则应该是「Linux 桌面元年来了吗」，也就是 Linux 是否正积极的运行在大家的个人 PC 上；而 Linux 操作系统本身，早在很久以前就已经广泛普及了，上到如今需求正旺的数据中心、训练中心的服务器，下到大家手里拿着的 Android 手机，又或者是乘坐地铁时看到的电子告示板，都是运行在 Linux 上的，如果说「广义 Linux」的话，他的市场份额大概是百分百的全球第一。&lt;/p&gt;
+&lt;p&gt;而今天我们讨论的问题是，Linux 桌面发行版为什么迟迟不进入大家的个人电脑。&lt;/p&gt;
+&lt;h3&gt;商业环境&lt;/h3&gt;
+&lt;p&gt;我想第一点在于商业环境，截至现在，还没多少厂商愿意预装 Linux 系统直接销售，从硅谷到中国乡镇，大家在数码商店买到的笔记本电脑或整机有不低于 90% 的几率是 Windows 系统或者 macOS 系统。剩下的特例包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;华为，不过他们预装的是鸿蒙系统，我们暂且相信鸿蒙是一个自研系统&lt;/li&gt;
+&lt;li&gt;在官网直接购买时，确实可以看到预装 Linux 的机型，不过各家装的不是同一个：Dell 的 XPS Developer Edition 是 Ubuntu，HP 的 Dev One 是 Pop!_OS，Framework 则在 2026 年 8 月开始给 Laptop 12 的预装机提供 Fedora KDE，理由是这个型号有八成用户本来就在跑 Linux&lt;/li&gt;
+&lt;li&gt;中国的政府机构、国有企业采购的电脑可能搭载的是统信系统，也算一种 Linux 发行版&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;或许有人说 DIY 玩家不就可以自由选择了吗？首先，我们必须承认 DIY 玩家的份额比想象中少得多；再次，对于这些「玩家」来说，或许没有什么理由去装一个跑游戏还有兼容性问题的系统；最后，在庞大的中国市场，盗版 Windows 是一股不容小觑的力量，装一个盗版 Windows 比装一个 Linux 发行版还要容易很多。&lt;/p&gt;
+&lt;p&gt;综上所述，即使有一些特例，我们仍然可以认为现在一个人无论通过何种方式买一台电脑，极大概率买到的不是一台 Linux 电脑。而对于绝大部分用户来说，直接结果就是，没有理由去换掉一个厂商已经装好的系统。对于不熟悉电脑操作的用户，去动手换一个自己不熟悉的系统完全没有必要，哪怕是从 Windows 10 升级到 Windows 11 这么一个「一键式」的体验，都需要犹豫很久，不必多想我们身边会有一些老人怀念 Windows 10、Windows 7 乃至 Windows XP，更何况一个需要手动分区，进 BIOS，涉及到终端操作的系统呢？&lt;/p&gt;
+&lt;p&gt;此时又有人问，为什么这些厂商不去主动贩卖搭载 Linux 系统的电脑呢？&lt;/p&gt;
+&lt;p&gt;Linux 作为一个自由软件，背后没有一个像微软那样有动力掏钱补贴 OEM 的商业主体，所以电脑是否预装 Linux 发行版，基本是厂商单方面决定的。微软为了维持 Windows 的市场份额，会和厂商有 OEM 协议与生态补贴，厂商没有理由去不选择微软。其次，一个很现实的理由是厂商不敢去为用户预装一个没有 Microsoft Office 兼容的系统，哪怕是 2026 年，Office 依然是大多数人使用电脑的主要用途。&lt;/p&gt;
+&lt;p&gt;除去微软，其实 Adobe 系列软件也是如此，大量使用 Photoshop、PR 的视觉创意用户是不敢去贸然使用 Linux 的。&lt;/p&gt;
+&lt;h3&gt;内部矛盾&lt;/h3&gt;
+&lt;p&gt;除去商业问题，Linux 的内部矛盾是一个更加令人头疼的问题。别说小白用户不会选，现在所谓的「技术大佬」们，也都还在为选择哪个 Distro 而发愁。&lt;/p&gt;
+&lt;p&gt;这是 GNU/Linux 作为自由软件（开源软件）的必然后果，开源为大家提供了可能性，同时无法抑制多样性。在这里，这幅经典的图片不得不再次摆出来：&lt;/p&gt;
+&lt;figure&gt;
+	&lt;div
+		style=&quot;max-height: 70vh; overflow-y: auto; border: 1px solid rgba(128,128,128,0.3); border-radius: 6px;&quot;
+	&gt;
+		&lt;a
+			href=&quot;/blog-images/linux-desktop-year/linux-distribution-timeline.svg&quot;
+			target=&quot;_blank&quot;
+			rel=&quot;noopener&quot;
+		&gt;
+			&lt;img
+				src=&quot;/blog-images/linux-desktop-year/linux-distribution-timeline.svg&quot;
+				alt=&quot;Linux 发行版时间线&quot;
+				style=&quot;width: 100%; display: block;&quot;
+			/&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+	&lt;figcaption&gt;Linux 发行版时间线（框内可滚动，点击看完整大图）&lt;/figcaption&gt;
+&lt;/figure&gt;&lt;p&gt;如你所见，当你真正尝试迈出一步去选择一个发行版，第一关是「选择困难症」。&lt;/p&gt;
+&lt;p&gt;大家有着不同的包管理器、桌面环境、显示协议、开发理念，开发者自己玩的很尽兴，但是代价是用户没那么多时间去沉下心来研究上面这幅图，还在没有外人干扰的情况下做出选择。一个只用 Office 的人，会愿意去花上一个上午的时间，听听 GNOME 和 KDE 谁才是老大吗。&lt;/p&gt;
+&lt;p&gt;这些巨大分歧也造成了软件厂商们无法积极的去适配 Linux，进一步恶化了 Linux 的非编程领域软件生态。以我自己为例，我最心爱的桌面远程软件网易 UU 远程至今没有 Linux 版，原因很简单，想要给 Linux 适配一个远程软件，网易的开发人员们必须做好兼容 X11 和 Wayland，兼容各类显卡驱动，兼容各类窗口管理器，作为一个大众软件，还必须同时提供 deb、rpm、AppImage 乃至 AUR 包。对于软件开发者来看，优化 Linux 体验是一个高投入、低回报的过程。这和为什么 iPhone 用户能买到各种各样的手机壳，而安卓用户却不行是一个道理——做 iPhone 手机壳每年只需要开三到四个磨具，而安卓厂商每年有五花八门的中杯大杯超大杯，单一机型销量还不如 iPhone 零头。&lt;/p&gt;
+&lt;h3&gt;其他原因&lt;/h3&gt;
+&lt;p&gt;Linux 不入流，也有其他原因，比如硬件适配性，大众购买笔记本电脑这一品类时，OEM 厂商预装的 Windows 都是为单一机型特定优化好的，比如以我的 Asus 电脑为例，触控板上的 DialPad，在我离开 Windows 后再也没有见他亮起来过。&lt;/p&gt;
+&lt;p&gt;更著名的例子则是 Nvidia 显卡驱动，相信对于对 Linux 感兴趣的读者对这幅图不陌生。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/blogimages/linux-desktop-year/nvidia-linus.jpeg&quot; alt=&quot;Linus 对 Nvidia 比中指&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里不得不说提一嘴，Linux 内核安装驱动的体验实则是比 Windows 要好得多的，装好 Linux 后大多数硬件是可以直接用的，如果你重装过微软官网下载的纯净 Windows 镜像，想必还记得网卡驱动都还得自己装的窘态。奈何 OEM 镜像已经把这一步提前做了。&lt;/p&gt;
+&lt;p&gt;此外还有用户的个人心理因素，工作场所对于电脑系统的指定，以及特定软件的需求等等，要说为什么 Linux 不流行，我们还能写 3000 字。&lt;/p&gt;
+&lt;h2&gt;为什么 Linux 元年要来了？&lt;/h2&gt;
+&lt;p&gt;开头说的 DHH 说「Linux 元年要来了」，实际上是他在给自己的新发行版 &lt;strong&gt;Omarchy&lt;/strong&gt; 打广告，不过这句话或许真的在成真。&lt;/p&gt;
+&lt;h3&gt;Linux 游戏体验正大幅提升&lt;/h3&gt;
+&lt;p&gt;虽然我目前的重度游戏场景依然驻扎在 Windows 一侧，但不得不承认，如今在 Linux 上打游戏，比在 Mac 上靠谱得多。作为一个对硬核大作需求不高的人，我起码能打包票：《雀魂麻将》和《小丑牌》在 Omarchy 上跑得丝般顺滑，毫无兼容性问题。而这一切的最大功臣，就是大家都喜爱的 Steam 及其背后的硬件野心 Steam Deck——更准确地说，是其核心的 Proton 转译层。&lt;/p&gt;
+&lt;p&gt;无论你是常看 LTT 还是国内数码 UP 主的硬核科普，大概都对 Proton 的大名有所耳闻。简单概括，Proton 绝非那种吃硬件资源的「虚拟机」，而是一个高效的「转译层」（本质上是 Wine 的进化版）。它负责将 Windows 的 DirectX 图形指令实时翻译成 Linux 支持的 Vulkan 指令。得益于 V 社财大气粗还有心积极拥抱开源社区，Proton 的转译效率达到了前所未有的高度。在不少评测中，甚至出现了性能倒挂的现象，在 Linux 下用 Proton 转译跑 3A 游戏的帧数，居然反超了 Windows 原生平台。原因很简单——「轻量的 Linux + Proton 转译损耗」的整体负担，有时真就小于「繁重的 Windows 后台服务 + 游戏本体」。&lt;/p&gt;
+&lt;p&gt;除去带有内核级反作弊系统的多人游戏目前仍是一道难关，Proton 的生态已经随着 SteamOS 的普及而高度成熟。更关键的是，因为 V 社自己要拿它来卖掌机，这套机制做到了真正的「开箱即用」。直接点击运行游戏即可，彻底终结了过去 Linux 玩家为了打个游戏还要开终端、改配置文件的痛苦折磨。&lt;/p&gt;
+&lt;p&gt;在我看来，很多技术达人虽然动手能力极强，却迟迟不愿彻底将主战机切换到 Linux，根本原因就在于「极客」与「玩家」这两个身份有着极高的重叠度。如今，随着 Linux 游戏体验这块最大短板被大幅补齐，我相信，它所能撬动并吸引来的新 Linux 桌面玩家，绝对会远超所有人的预期。&lt;/p&gt;
+&lt;h3&gt;Windows 正失去公信力&lt;/h3&gt;
+&lt;p&gt;是的，Linux 的市场份额有可能好转，离不开微软的自己作死。不必过度思考，我就可以快速列下好几个微软的罪证：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;哪怕在中国市场高度不可用，还是强推 Copilot&lt;/li&gt;
+&lt;li&gt;哪怕是没有 AI 的时候，也强推 Office 365 和 OneDrive&lt;/li&gt;
+&lt;li&gt;系统极度臃肿，开机空载占用一堆无用进程，被迫兼容一堆历史工具，「设置」「控制面板」至今仍然并存&lt;/li&gt;
+&lt;li&gt;隔三岔五更新&lt;/li&gt;
+&lt;li&gt;软件生态已经不适合最新的 Agent 发展，满地的 dll 文件远不如 Unix 的「一切皆文件」哲学&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在海外，LTT 发「There&amp;#39;s NO Excuse Not To Try Linux!」或许不算什么，但是当 PewDiePie 也开始发「I installed Linux (so should you)」时，我认为这确实意味着一个节点到来了。&lt;/p&gt;
+&lt;h3&gt;Linux 是 Agent 的天然领地&lt;/h3&gt;
+&lt;p&gt;诸位可能知道无论是当时的 OpenClaw 还是现在的 Codex，都是 Mac First，很多人争先恐后的去购买 Mac mini，也有观点认为 Mac First 是因为 OpenAI 内部都在用 mac，这诚然是一个角度，但是我认为与其说是 Mac First，不如说是 Unix-like First。&lt;/p&gt;
+&lt;p&gt;首先需要简单介绍一下 Linux、macOS 和 Unix 的关系。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TD
+    UNIX[早期 UNIX &amp;lt;br/&amp;gt; 贝尔实验室] --&amp;gt; BSD[BSD 分支]
+    UNIX --&amp;gt; MINIX[MINIX]
+    BSD --&amp;gt; Mach[Mach 内核]
+    Mach --&amp;gt; NeXT[NeXTSTEP]
+    BSD --&amp;gt; NeXT
+    NeXT --&amp;gt; macOS[macOS]
+    MINIX -.-&amp;gt;|仅为启发&amp;lt;br/&amp;gt;非代码派生| Linux[Linux 内核]
+    Linux --&amp;gt; Distros[各大 Linux 发行版]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;简单来说，macOS 和 Linux 都和 Unix 本身有着千丝万缕的关系，macOS 目前仍然是正版授权，后者则是以相同的系统哲学铸成的。Linus 当年是在 MINIX 上写的 Linux，文件系统布局也照抄过，但内核是从零写的，没有继承 MINIX 的代码，这也正是后来那场 Tanenbaum-Torvalds 论战的由来。要说这份哲学是什么——「一切皆文件」（Everything is a file）以及极简、透明的命令行哲学。&lt;/p&gt;
+&lt;p&gt;对于目前的 AI Agent 来说，它们的核心是处理与生成文本的大语言模型。Agent 想要接管系统并自动执行任务，最自然的方式就是通过 CLI 输入指令，并直接读取纯文本的配置文件或日志反馈。在 Linux 体系中，无论是修改网络代理、部署 Docker 容器还是配置环境变量，系统状态几乎全以纯文本形式暴露；而在 Windows 环境下，错综复杂的图形设置界面、深不可测的注册表（Registry），以及重度依赖 GUI 操作的软件生态，对基于文本流的 AI 来说完全是难以解析的黑盒。&lt;/p&gt;
+&lt;p&gt;更进一步看，在终端 Shell 的选择上，Linux/macOS 标配的 Bash/Zsh 相比 Windows 的 PowerShell 具有极其明显的优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;纯文本流 vs 对象管道&lt;/strong&gt;：PowerShell 的核心是 .NET 对象管道（Object Pipeline），这种设计在 C# 生态和 Windows 运维里固然强大，但也带来了沉重的运行时开销与复杂的类型推导。相比之下，Bash 和 Zsh 坚守了 Unix 经典的纯文本流（&lt;code&gt;stdin&lt;/code&gt;/&lt;code&gt;stdout&lt;/code&gt;）。对大模型而言，文本就是它最天然的介质，处理 Bash 的文本输出远比解析 PowerShell 那一层层包装的 .NET 对象结构要直接且高效得多。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Token 效率&lt;/strong&gt;：互联网上数十年的 CI/CD 自动化脚本、Docker 镜像构建文件以及开源项目文档，绝大多数都是基于 POSIX 标准编写的。AI Agent 执行一行简单的 &lt;code&gt;grep&lt;/code&gt;、&lt;code&gt;awk&lt;/code&gt; 或 &lt;code&gt;sed&lt;/code&gt;，不仅语义紧凑，而且在 LLM 的训练数据中拥有极高且稳定的提示词映射率。反观 PowerShell 那一套动辄十几个字符的 Verb-Noun 命名规范（如 &lt;code&gt;Get-ChildItem&lt;/code&gt;）以及独特的参数转义逻辑，不仅白白消耗更多的 Token，还无形中增加了大模型推导生成时的歧义与幻觉几率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当未来的软件开发与系统自动化越来越依赖大模型时，天生对脚本、纯文本和自动化极度友好的 Unix-like 系统，在整体的适配度上，我认为是远超过 Windows 阵营的。&lt;/p&gt;
+&lt;p&gt;有人可能会反驳 Codex 等客户端都是先有 macOS，再有 Windows，最后才有 Linux，我觉得这和前面的内容并不冲突。前面讲的是 Agent 操作一个系统的情况下，Unix-like 有巨大优势；而在 GUI harness 这个背景下，是人如何与 Agent 交互的问题。Codex Desktop 迟迟不上 Linux，并不是 Codex 内置的 Agent 无法适配 Linux——相反，在 Claude Code、Codex CLI、Hermes 等工具的发布框架下，一般都是 Bash First，pwsh 才是二等公民——Codex Desktop 上 Linux 晚，是落入了上述的 Linux 下面向用户的软件兼容困难的问题，Computer Use 等功能才是延迟发布的关键。&lt;/p&gt;
+&lt;p&gt;说起 Computer Use，Linux 不得不再赢一遍，这个功能在 Linux 下有很大可能是不怎么被需要的，因为能用修改配置文件解决的事情，为什么要模拟人类操作电脑呢？&lt;/p&gt;
+&lt;h3&gt;Omarchy 与独裁系统&lt;/h3&gt;
+&lt;p&gt;回到开头的故事。DHH 发布了 Omarchy，反响很大，他自己甚至说这可能带来 The year of Linux。&lt;/p&gt;
+&lt;p&gt;先说 Omarchy 是什么。按官方介绍，它是一款基于 Arch、平铺窗口管理器 Hyprland 和桌面构建工具包 Quickshell 的 omakase（主厨精选）发行版，从 Neovim 到 Chromium、从 Obsidian 到 LibreOffice 全部预装，开箱即用。DHH 强调这不是预装软件的大杂烩，而是「我平时会用到的一切」；同时他也提醒你，要欣赏这种重度 TUI、主题精致、平铺窗口的美感，「需要一个适应的过程」。&lt;/p&gt;
+&lt;p&gt;两个关键词：&lt;strong&gt;主厨精选&lt;/strong&gt;、&lt;strong&gt;适应过程&lt;/strong&gt;。问题最后都落在第二个上。&lt;/p&gt;
+&lt;p&gt;我想给「主厨精选」换一个更中性、甚至略带贬义的说法：&lt;strong&gt;独裁系统&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这个词脱胎于 BDFL（Benevolent Dictator For Life，终身仁慈独裁者）——项目创始人在社区出现争议时握有最终决定权。我把它挪到操作系统上：所谓独裁系统，就是发行者已经替你做完了几乎所有决定，哪怕你一行配置都没写，它依然以发行者本人的习惯高效运转。你不必选，甚至不能选。&lt;/p&gt;
+&lt;p&gt;不过这里要先做个区分。独裁有硬有软。macOS 是硬独裁：苹果替你规定了快捷键、动画曲线、设计语言乃至窗口逻辑，而且你&lt;strong&gt;换不掉&lt;/strong&gt;——你没办法把 WindowServer 拆下来装一个平铺窗口管理器。Omarchy 是软独裁：底下毕竟还是 Arch，你想换 KDE、想扔掉 Hyprland，没人拦得住你，&lt;code&gt;pacman&lt;/code&gt; 一句话的事。它的强制力来自默认值本身的完成度：好到你不想动它。&lt;/p&gt;
+&lt;p&gt;也正因为如此，说 Omarchy 是「第一个有主见的发行版」并不成立。elementary OS 有近乎洁癖的人机界面规范，Pop!_OS、Zorin 各有各的执念，ChromeOS 更极端，平铺这条线上也早有 Regolith 和 Garuda。Omarchy 真正特别的地方不在于「有主见」，而在于&lt;strong&gt;它是一个人的 dotfiles 直接当产品发行&lt;/strong&gt;。Ubuntu 和 Fedora 的取舍是委员会的产物，是为了适合所有人而不断妥协的结果，代价就是用户装完系统之后，依然要面对扩展插件、桌面美化和环境配置的泥潭。而 Arch + Hyprland + Neovim + 一整套调好的 config，其中任何一项自己来配都要搭进去大半天写配置文件外加长期微调，DHH 直接把他自己在用的那套甩给你。这里面一点妥协都没有，全是一个人的审美偏执和生产力哲学。&lt;/p&gt;
+&lt;p&gt;对 Linux 桌面来说，有人这么干是好事。开源的多样性给了它生命力，也带来了没完没了的选择困难：桌面环境选 GNOME 还是 KDE？显示协议用 Wayland 还是 X11？包管理器用 apt、pacman 还是 Flatpak？每一个环节都有几十种组合，消耗掉的是普通用户的耐心，劝退的是想做适配的厂商。社区里人人都在造轮子、发新的发行版，却很少有人敢站出来端出一套完成度足够高的默认体验，然后告诉用户：别选了，听我的，这套就是最帅、最高效的。macOS 能在开发者和创作者群体里建立起极其稳固的口碑，靠的正是这种绝对的独裁：用户让渡一部分自定义的自由，换来统一性、像样的默认美学，以及真的开箱即用。&lt;/p&gt;
+&lt;p&gt;所以问题不在于要不要独裁，而在于 Omarchy 的独裁是替谁做的。&lt;/p&gt;
+&lt;p&gt;「适应过程」就是 DHH 不打自招的地方。他浪漫地把它称作一场超出舒适区的冒险，但现实是绝大多数人把电脑当生产力工具，没人想在工具上冒险。而 Omarchy 要求的适应，就是最劝退的那几种。&lt;/p&gt;
+&lt;p&gt;平铺窗口与全键盘操控，对极客是双手不离键盘的效率，对习惯拖拽窗口、点「最大化/最小化」的人来说，只意味着背一堆 Super/Alt 组合键，以及随之而来的挫败感。TUI 与终端依赖，即使到了 2026 年，让一个只想写写文档、看看视频的用户打开终端去改纯文本配置文件，依然是一道跨不过去的沟。而所谓主厨精选，如果真要走向大众，主菜应当是直觉的、图形化的、零学习成本的；Omarchy 的主菜却是重度命令行与平铺窗口——相当于主厨端上来一盘需要熟记复杂吃法规矩的高级刺身，然后对客人说：吃不惯是因为你还没适应。&lt;/p&gt;
+&lt;p&gt;Omarchy 的尴尬就在这里：&lt;strong&gt;它解决的，恰恰是最不需要被解决的那群人的碎片化困境。&lt;/strong&gt; 能欣赏它的人，本来就有能力也有耐心自己配出一套 Hyprland；而真正需要一位仁慈独裁者替他做决定的人，第一天就会被 Super+Enter 劝退。&lt;/p&gt;
+&lt;p&gt;Omarchy 的叙事底色是「开发者逃离 macOS」，目标受众从第一天起就写在脸上。不过 DHH 的野心不止于此。2026 年 8 月，他成立了 Omacom 基金会，拿到 800 万美元认捐，出资人里坐着 Michael Dell、Patrick Collison、Jack Dorsey 和 Jason Fried；第一笔钱给了 Hyprland 的作者 vaxry，三年独家赞助，让他全职做下去。Dell 官方博客同期发了《Year of the Linux Laptop: Omarchy on XPS》，联合 Intel 给 2026 款 XPS 做了 Day One 支持。他是认真要去撬那几亿台桌面的。&lt;/p&gt;
+&lt;p&gt;可钱和大佬解决不了主菜的问题。Dell 做的是让你装完能用；替你装好这一步，它没做——ISO 还是得你自己下，启动盘还是得你自己做。800 万美元也许能让 Omarchy 支持更多机型、被更多人听说，可它端出来的仍然是 Hyprland 和 Neovim。Omarchy 或许会成为几十万程序员和 Linux 极客梦寐以求的年度新欢，却绝不可能是撬动 Windows/macOS 用户的那一下。The year of Linux 这个口号，错的不是野心，是菜单。&lt;/p&gt;
+&lt;p&gt;Linux 桌面真正需要的独裁，不是教用户怎么用 Neovim 和 Hyprland 的独裁，而是让用户可以彻底不碰 Terminal 的独裁，是安装包能双击打开的独裁，是有一个全局统一应用商店的独裁。&lt;/p&gt;
+&lt;p&gt;讽刺的是，今天离这个目标最近的既不是 Ubuntu，也不是 DHH，而是来自中国的政企定制 Linux。统信 UOS、麒麟这一类系统从来没打算做极客的玩具，它们要交付的是能让一间办公室里几百个只会用 Windows 的人第二天就上手的东西：安装包双击运行、统一的应用商店、图形化的一切、几乎不需要终端。这些在极客眼里毫无技术含量甚至有点土的取舍，正好就是大众化需要的全部条件。它们不是想通了什么，只是被需求逼到了正确的位置上。&lt;/p&gt;
+&lt;h2&gt;所以，桌面元年来了吗&lt;/h2&gt;
+&lt;p&gt;不是 2026 年，Omarchy 也没有做到它承诺的那件事。&lt;/p&gt;
+&lt;p&gt;这篇文章的前后两半其实在回答两个不同的问题。后半篇那三股力量涨的是意愿：Proton 让游戏不再是借口，微软自己把用户往门外推，Agent 让 Unix-like 从个人偏好变成了结构优势。想换的人确实比几年前多得多。前半篇列的那些障碍涨的是门槛，而它们一条都没被解决——电脑买来还是 Windows，只用 Office 的人还是打不开 Office，Photoshop 依然没有，显卡驱动依然会让人回论坛发帖，我的 DialPad 依然不亮。&lt;/p&gt;
+&lt;p&gt;元年是门槛的事，不是意愿的事。想装的人再多，卡在第一步的人一样多。&lt;/p&gt;
+&lt;p&gt;Omarchy 的尴尬也在这里。它把「装完以后」做到了几乎最好，却对「装之前」和「装不下去的人」束手无策。800 万美元能让它支持更多机型，不能让它变成一个双击就打得开的东西。&lt;/p&gt;
+&lt;p&gt;门槛什么时候降，我给不出年份，但给得出条件：电脑买来就是 Linux，安装包双击能开，一个应用商店装完所有东西，Office 和 Adobe 要么进来、要么被彻底替代。这几件事没有一件需要新技术，需要的是有人愿意去干这些不好玩的活。统信和麒麟已经在干了，只不过他们的甲方是一间办公室。&lt;/p&gt;
+&lt;p&gt;但我判断这一天不远。Linux 桌面这几年确实在往好的方向走，前面那三股力量是真的在把人往这边推，而人一多，总会有人去接那些不好玩的活。&lt;/p&gt;
+&lt;p&gt;至于验收标准，我只有一条：我敢给一个只用 Office 的长辈装一台 Linux，装完不用留下我的电话。&lt;/p&gt;
+&lt;p&gt;现在还不敢。但比以前敢一点了。&lt;/p&gt;
+</content:encoded></item><item><title>Does the Three-Episode Rule Really Work?</title><link>https://aronnax.site/blog/three-episode-rule/</link><guid isPermaLink="true">https://aronnax.site/blog/three-episode-rule/</guid><description>An anime folk heuristic, formalised as a multi-armed bandit problem and tested on 4,153 real shows. Bilingual — use the language toggle in the navigation bar.</description><pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;import &amp;#39;katex/dist/katex.min.css&amp;#39;
 import &amp;#39;@/styles/paper.css&amp;#39;
 import DefaultLangEn from &amp;#39;@/components/DefaultLangEn.astro&amp;#39;&lt;/p&gt;
 &lt;DefaultLangEn /&gt;&lt;div class=&quot;paper&quot;&gt;&lt;div data-lang=&quot;en&quot;&gt;&lt;h2&gt;1. The heuristic&lt;/h2&gt;

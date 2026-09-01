@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /schedule
+
+Sitemap: https://aronnax.site/sitemap-index.xml
